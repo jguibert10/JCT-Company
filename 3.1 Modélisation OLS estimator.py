@@ -14,28 +14,29 @@ df = pd.read_excel('df_traitee_test.xls')
 print(df.shape)
 
 def estimateur(arr, typ, surf, nbp):
-    global df
+    global df #récupération de la variable globale
+    df2 = df #création d'une variable locale
     #Filtrage
-    df = df.loc[(df["code_postal"] == arr) & 
-                (df["type_local"].str.contains("Appartement")) &
-                (abs(df['surface_reelle_bati']-surf) <= 20) &
-                (abs(df['nombre_pieces_principales']-nbp <= 1))]
-    if len(df) == 0:
+    df2 = df2.loc[(df2["code_postal"] == arr) & 
+                (df2["type_local"].str.contains("Appartement")) &
+                (abs(df2['surface_reelle_bati']-surf) <= 20) &
+                (abs(df2['nombre_pieces_principales']-nbp <= 1))]
+    if len(df2) == 0:
         return None
     
     #Vraisemblance enlever les valeurs extrêmes (5% au dessus et en dessous)
-    df.sort_values(by=['valeur_fonciere'], inplace=True)
-    df.reset_index(drop=True, inplace=True)
+    df2.sort_values(by=['valeur_fonciere'], inplace=True)
+    df2.reset_index(drop=True, inplace=True)
     
-    n = df.shape[0]
+    n = df2.shape[0]
     k_5 = np.floor(0.05*n) #partie entière
     index_minmax = np.arange(k_5, dtype=int).tolist() + ((n-1)-np.arange(k_5, dtype=int)).tolist()
-    df.drop(index=index_minmax, inplace=True)
+    df2.drop(index=index_minmax, inplace=True)
 
     #Regression
-    Y = df["valeur_fonciere"].values.tolist()
+    Y = df2["valeur_fonciere"].values.tolist()
     x_1 = np.array(
-        df["surface_reelle_bati"].values.tolist()
+        df2["surface_reelle_bati"].values.tolist()
         ) #régresseur surface
     x_0 = np.ones(x_1.shape[0], dtype=int) #la constante de régression
     X = np.c_[x_0, x_1].tolist() #créer une matrice n ligne 2 colonne
