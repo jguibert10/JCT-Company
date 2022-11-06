@@ -49,8 +49,11 @@ for i in range(1, temp.shape[0]):
             compteur = 1
         else:
             index_supp.append(i)
-
 temp.drop(index=index_supp, inplace=True)
 temp = temp.reset_index(drop=True)
 
-#temp.to_excel(r'df_traitee_test.xls')
+#Vraisemblance
+temp_2 = temp[abs(temp["valeur_fonciere"]-10000*temp["surface_reelle_bati"])
+              /temp["valeur_fonciere"] <= 1.5]
+print(temp_2.shape)
+#temp_2.to_excel(r'df_traitee_test.xls')
