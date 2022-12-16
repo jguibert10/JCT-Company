@@ -20,12 +20,8 @@ from sklearn.linear_model import LogisticRegression, LogisticRegressionCV
 
 df_temp = pd.read_excel('/Users/charlesrollet/Desktop/ENSAE 1A/Code PdP/df_traitee_test copie.xls')
 
-column = ["valeur_fonciere", "type_local","surface_reelle_bati", "nombre_pieces_principales","longitude", "latitude"]
+column = ["date_mutation","valeur_fonciere", "type_local","surface_reelle_bati", "nombre_pieces_principales","longitude", "latitude"]
 df = df_temp[column]
-
-Y = df["valeur_fonciere"]
-X = df.drop("valeur_fonciere", axis=1)
-X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.2,random_state=11)
 
 # On recode en binaire la variable type de bien
 encoder = LabelEncoder()
@@ -36,27 +32,41 @@ conditions = [df['nombre_pieces_principales']<9, df['nombre_pieces_principales']
 values = [df['nombre_pieces_principales'].values, 'more_than_9']
 df['test_nb_pieces'] = np.select(conditions, values)
 
-# On standardise la variable catégorielle nombre de pièces 
-pd.get_dummies(df['test_nb_pieces'], drop_first=True, prefix='nb_pieces_')
-
 # On convertit la date en datetime et on sépare les mois et les années
 df["date_mutation"]=pd.to_datetime(df["date_mutation"]) 
-df['mois'] = df['date_mutation'].dt.year
-df['année'] = df['date_mutation'].dt.month
+df['année'] = df['date_mutation'].dt.year
+df['mois'] = df['date_mutation'].dt.month
 df.sort_values('date_mutation', ignore_index=True)
 
 # regroupe les mois en demi semestre
-conditions = [df['month']<4, (df['month']>=4) & (df['month']<7), (df['month']>=7) & (df['month']<10),df['month']>=10]
+conditions = [df['mois']<4, (df['mois']>=4) & (df['mois']<7), (df['mois']>=7) & (df['mois']<10),df['mois']>=10]
 choiceliste = ['semestre_1','semestre_2','semestre_3','semestre_4']
 df['semestre'] = np.select(conditions, choiceliste)
 
-# On standardise la variable catégorielle mois 
-pd.get_dummies(df['semestre'])
+# On standardise les variables catégorielles mois et nombre de pièces
+df_test = pd.get_dummies(df, columns = ['semestre'])
+df_final = pd.get_dummies(df_test, columns = ['test_nb_pieces'])
+
+# Création du DataFrame final`
+df_new =pd.DataFrame(df_final)
+new_list = ['date_mutation','nombre_pieces_principales','mois']
+df_new=df_new.drop(new_list,axis=1)
 
 # On standardise les variables continues
-df_continu = df[['surface_reelle_bati', 'latitude', 'longitude']]
+liste_annexe = ['surface_reelle_bati', 'latitude', 'longitude']
+df_continu = df_new[liste_annexe]
 sc = StandardScaler()
-df_scale = sc.fit_transform(df_continu)
+scale = sc.fit_transform(df_continu)
+df_scale = pd.DataFrame(scale, columns = liste_annexe)
+
+# On termine de construire notre base finale
+for col in liste_annexe:
+    df_new[col] = df_scale[col]
+
+# On crée les bases features et cibles
+Y = df_new["valeur_fonciere"]
+X = df_new.drop("valeur_fonciere", axis=1)
+X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.2,random_state=11)
 
 # On va choisir le meilleur standardiseur
 sc = StandardScaler()
@@ -103,7 +113,3 @@ print(meilleur_standardiseur(LogisticRegression()))
 print(meilleur_standardiseur(KNeighborsClassifier()))
 print(meilleur_standardiseur(SVC()))
 print(meilleur_standardiseur(XGBRegressor()))
-
-#regressor = XGBRegressor()
-#regressor = regressor.fit(X_train, Y_train)
-#print(regressor.score(X_test,Y_test))
