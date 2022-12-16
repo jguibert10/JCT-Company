@@ -107,9 +107,9 @@ def meilleur_standardiseur(model_name):
     print("For {}, better score {} with {}.".format(model_name, better_score, better_scaler))
 
 # On applique la fonction à 6 modèles différents 
-print(meilleur_standardiseur(RandomForestClassifier()))
-print(meilleur_standardiseur(DecisionTreeClassifier()))
-print(meilleur_standardiseur(LogisticRegression()))
-print(meilleur_standardiseur(KNeighborsClassifier()))
-print(meilleur_standardiseur(SVC()))
-print(meilleur_standardiseur(XGBRegressor()))
+meilleur_standardiseur(RandomForestClassifier()))
+meilleur_standardiseur(DecisionTreeClassifier()))
+meilleur_standardiseur(LogisticRegression()))
+meilleur_standardiseur(KNeighborsClassifier()))
+meilleur_standardiseur(SVC()))
+meilleur_standardiseur(XGBRegressor()))
