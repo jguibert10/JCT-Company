@@ -18,7 +18,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression, LogisticRegressionCV
 
-df_temp = pd.read_excel('/Users/charlesrollet/Desktop/ENSAE 1A/Code PdP/df_traitee_test copie.xls')
+df_temp = pd.read_excel('Insérer la base nettoyée')
 
 column = ["date_mutation","valeur_fonciere", "type_local","surface_reelle_bati", "nombre_pieces_principales","longitude", "latitude"]
 df = df_temp[column]
