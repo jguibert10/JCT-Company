@@ -39,21 +39,23 @@ def runImmoDataScrapping(n: int, filename: str):
         
             driver.get(url)
             driver.implicitly_wait(6)
-            colsInDetailsList = ['addresse', 'prix','date_vente','details']
+            colsInDetailsList = ['addresse','type_bien', 'prix', 'prix_m2', 'details']
             data = {colName : [] for colName in colsInDetailsList}
         
-            elements = driver.find_elements(by=By.XPATH, value='//div[@class="Card_cardContainer__1xYDO Card_cardContainerList__CL7In"]')
+            elements = driver.find_elements(by=By.XPATH, value='//div[@class="flex flex-col gap-2 p-3"]')
             
             for element in tqdm(elements):
                 driver.implicitly_wait(2)            
-                addresse = element.find_element(by=By.CSS_SELECTOR, value="div.Card_address__2SfIz").text
-                prix = element.find_element(by=By.CSS_SELECTOR, value="div.Card_priceTag__2aA_r").text
-                date_vente = element.find_element(by=By.CSS_SELECTOR, value='div.Card_bottomSection__1-tob').text
-                details = element.find_element(by=By.CSS_SELECTOR, value='div.Card_middleSection__3sNkm').text
+                addresse = element.find_element(by=By.XPATH, value='//p[@class="text-gray-700 font-bold truncate"]').text
+                type_bien = element.find_element(by=By.XPATH, value='//p[@class="flex items-center text-sm text-gray-400"]').text
+                prix = element.find_element(by=By.XPATH, value='//p[@class="text-primary-500 font-bold whitespace-nowrap"]').text
+                prix_m2= element.find_element(by=By.XPATH, value='//p[@class="text-gray-400 text-xs text-right"]').text
+                details = element.find_element(by=By.XPATH, value='//div[@class="flex gap-5"]').text
                 
-                data['adresse'].append(addresse)
+                data['addresse'].append(addresse)
                 data['prix'].append(prix)
-                data['date_vente'].append(date_vente)
+                data['type_bien'].append(type_bien)
+                data['prix_m2'].append(prix_m2)
                 data['details'].append(details)
         
             driver.close()
@@ -70,12 +72,4 @@ if __name__=='__main__':
     main()
     
 global df
-    
-
-    
-    
-    
-    
-    
-    
     
