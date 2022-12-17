@@ -9,12 +9,12 @@ import numpy as np
 import pandas as pd
 
 #Récupération de la base de données
-df_temp = pd.read_csv(r'C:\Users\julie\Bureau\Projet python 2A\75.csv.gz')
+df_temp = pd.read_csv(Insérer la base du gouvernement)
+#df_temp = pd.read_excel(Insérer la base du gouvernement)
 #mettre la base non traitée
 
 #Sélection des variables d'intérêts
-column = ["id_mutation", "date_mutation", "nature_mutation",
-          "code_postal", "adresse_numero", "adresse_nom_voie", 
+column = ["date_mutation", "nature_mutation", 
           "valeur_fonciere",#type int64
           "type_local", "surface_reelle_bati", "nombre_pieces_principales",
           "longitude", "latitude"]
@@ -55,5 +55,8 @@ temp = temp.reset_index(drop=True)
 #Vraisemblance
 temp_2 = temp[abs(temp["valeur_fonciere"]-10000*temp["surface_reelle_bati"])
               /temp["valeur_fonciere"] <= 1.5]
-print(temp_2.shape)
+
+temp_2.drop(['nature_mutation'], axis=1, inplace=True)
+
+#temp_2.to_csv(r'df_traitee_test.csv')
 #temp_2.to_excel(r'df_traitee_test.xls')
