@@ -13,7 +13,7 @@ import geopandas
 from shapely.geometry import Point
 
 # On lit la base issue du web scraping en renommant de la même manière les colonnes que celles issues de la base du gouv
-df = pd.read_csv("/Users/charlesrollet/Desktop/TestWS1.csv",\
+df = pd.read_csv("Insérer la base issue du Web Scraping",\
                  names=['adresse_du_bien', 'type_local', 'valeur_fonciere', 'prix_m2', 'details'],\
                   index_col=0)
 indexNames = df[ df['adresse_du_bien'] == 'addresse'].index
@@ -81,6 +81,3 @@ df.drop(['coordinates', 'adresse_du_bien', 'adresse', 'ville', 'prix_m2'], axis=
 df = df[['date_mutation','valeur_fonciere','type_local','surface_reelle_bati','nombre_pieces_principales','longitude','latitude']]
 
 df.to_csv('Clean_WS.csv')
-
-
-
