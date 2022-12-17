@@ -9,9 +9,8 @@ import numpy as np
 import pandas as pd
 
 #Récupération de la base de données
-df_temp = pd.read_csv(Insérer la base du gouvernement)
+df_temp = pd.read_csv('Insérer la base du gouvernement')
 #df_temp = pd.read_excel(Insérer la base du gouvernement)
-#mettre la base non traitée
 
 #Sélection des variables d'intérêts
 column = ["date_mutation", "nature_mutation", 
