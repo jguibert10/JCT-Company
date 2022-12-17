@@ -11,15 +11,14 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler, RobustScaler,MinMaxScaler
 from xgboost import XGBRegressor
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression, LogisticRegressionCV
 
-df_temp = pd.read_excel('Insérer la base nettoyée')
-df_temp = pd.read_csv('Insérer la base nettoyée')
+df_temp = pd.read_excel('/Users/charlesrollet/Desktop/df_traitee_final.xls')
 
 column = ["date_mutation","valeur_fonciere", "type_local","surface_reelle_bati", "nombre_pieces_principales","longitude", "latitude"]
 df = df_temp[column]
@@ -53,36 +52,63 @@ df_new =pd.DataFrame(df_final)
 new_list = ['date_mutation','nombre_pieces_principales','mois']
 df_new=df_new.drop(new_list,axis=1)
 
-# On standardise les variables continues
-liste_annexe = ['surface_reelle_bati', 'latitude', 'longitude']
-df_continu = df_new[liste_annexe]
-sc = StandardScaler()
-scale = sc.fit_transform(df_continu)
-df_scale = pd.DataFrame(scale, columns = liste_annexe)
-
-# On termine de construire notre base finale
-for col in liste_annexe:
-    df_new[col] = df_scale[col]
-
 # On crée les bases features et cibles
 Y = df_new["valeur_fonciere"]
 X = df_new.drop("valeur_fonciere", axis=1)
 X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.2,random_state=11)
 
-# On va choisir le meilleur standardiseur
+# On chosisit de réindexer les dataframe afin d'éviter que la réinsersion des colonnes de new_list standardisée pose pb
+X_train = X_train.reset_index(drop = True)
+X_test = X_test.reset_index(drop = True)
+Y_train = Y_train.reset_index(drop = True)
+Y_test = Y_test.reset_index(drop = True)
+
+# On retire du dataframe X_train les variables continues pour les standardiser
+liste_annexe = ['surface_reelle_bati', 'latitude', 'longitude']
+df_continu = X_train[liste_annexe]
+df_continu_test = X_test[liste_annexe]
+
+# On utilise 3 principaux Standardisateurs
 sc = StandardScaler()
 rs = RobustScaler()
 minmax = MinMaxScaler()
 
-X_train_st = sc.fit_transform(X_train)
-X_test_st = sc.transform(X_test)
+# On standardise les variables continues dans les bases train et test selon les 3 standardisateurs choisis
+scale = sc.fit_transform(df_continu)
+df_scale = pd.DataFrame(scale, columns = liste_annexe)
+scale_test = sc.transform(df_continu_test)
+df_scale_test = pd.DataFrame(scale_test, columns = liste_annexe)
 
-X_train_rob = rs.fit_transform(X_train)
-X_test_rob = rs.transform(X_test)
+robust = rs.fit_transform(df_continu)
+df_robust = pd.DataFrame(robust, columns = liste_annexe)
+robust_test = rs.transform(df_continu_test)
+df_robust_test = pd.DataFrame(robust_test, columns = liste_annexe)
 
-X_train_mm = minmax.fit_transform(X_train)
-X_test_mm = minmax.transform(X_test)
+MinMax = minmax.fit_transform(df_continu)
+df_MinMax = pd.DataFrame(MinMax, columns = liste_annexe)
+MinMax_test = minmax.transform(df_continu_test)
+df_MinMax_test = pd.DataFrame(MinMax_test, columns = liste_annexe)
 
+# On termine de construire nos bases finales
+X_train_st = X_train.copy()
+X_train_rob = X_train.copy()
+X_train_mm = X_train.copy()
+
+X_test_st = X_test.copy()
+X_test_rob = X_test.copy()
+X_test_mm = X_test.copy()
+
+for col in liste_annexe:
+    X_train_st[col] = df_scale[col]
+    X_test_st[col] = df_scale_test[col]
+    
+for col in liste_annexe:
+    X_train_rob[col] = df_robust[col]
+    X_test_rob[col] = df_robust_test[col]
+    
+for col in liste_annexe:
+    X_train_mm[col] = df_MinMax[col]
+    X_test_mm[col] = df_MinMax_test[col]
 # On crée une fonction pour voir quel est le meilleur standardisateur
 def meilleur_standardiseur(model_name):
     '''
