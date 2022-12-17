@@ -19,6 +19,7 @@ from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression, LogisticRegressionCV
 
 df_temp = pd.read_excel('Insérer la base nettoyée')
+df_temp = pd.read_csv('Insérer la base nettoyée')
 
 column = ["date_mutation","valeur_fonciere", "type_local","surface_reelle_bati", "nombre_pieces_principales","longitude", "latitude"]
 df = df_temp[column]
@@ -113,3 +114,6 @@ meilleur_standardiseur(LogisticRegression()))
 meilleur_standardiseur(KNeighborsClassifier()))
 meilleur_standardiseur(SVC()))
 meilleur_standardiseur(XGBRegressor()))
+
+#df_new.to_excel('base finale pour le ML')
+#df_new.to_csv('base finale pour le ML')
