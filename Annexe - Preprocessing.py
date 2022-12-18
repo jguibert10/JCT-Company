@@ -53,7 +53,7 @@ new_list = ['date_mutation','nombre_pieces_principales','mois']
 df_new=df_new.drop(new_list,axis=1)
 
 # On crée les bases features et cibles
-Y = df_new["valeur_fonciere"]
+Y = pd.DataFrame(df_new["valeur_fonciere"])
 X = df_new.drop("valeur_fonciere", axis=1)
 X_train,X_test,Y_train,Y_test=train_test_split(X,Y,test_size=0.2,random_state=11)
 
@@ -111,10 +111,7 @@ for col in liste_annexe:
     X_test_mm[col] = df_MinMax_test[col]
 # On crée une fonction pour voir quel est le meilleur standardisateur
 def meilleur_standardiseur(model_name):
-    '''
-    Find the best scaler regarding the model used with the accuracy score obtained
-    Input: model_name, sklearn model
-    '''
+    
     better_score = 0
     better_scaler = ''
 
@@ -125,13 +122,13 @@ def meilleur_standardiseur(model_name):
     for i in range(len(X_test_list)):
         model = model_name
         model.fit(X_train_list[i], Y_train)
-        score = accuracy_score(Y_test, model.predict(X_test_list[i]))
+        score = model.score(X_test_list[i], Y_test)
         if score > better_score:
             better_score = score
             better_scaler = scalers[i]
         elif score == better_score:
             better_scaler += " / " + scalers[i]
-    print("For {}, better score {} with {}.".format(model_name, better_score, better_scaler))
+    print("Pour le modèle {}, better score {} avec {}.".format(model_name, better_score, better_scaler))
 
 # On applique la fonction à 6 modèles différents 
 meilleur_standardiseur(LinearRegression()))
