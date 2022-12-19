@@ -4,7 +4,10 @@ Bienvenue sur le Github de notre projet Python Pour le Data Scientist !
 
 L'objectif du projet est de prédire le prix d'un bien immobilier en fonction de certaines de ses caractéristiques telles que sa surface, son nombre de pièces, sa date de vente, son type (appartement ou maison) et sa location à Paris. 
 
-Notre projet ce divise en 5 étapes :
+Notre projet ce divise en 6 étapes :
+
+<img width="940" alt="Capture d’écran 2022-12-19 à 16 21 35" src="https://user-images.githubusercontent.com/103358913/208459531-c4c0501c-c86e-4dc7-b6fb-0589ec5883a6.png">
+
 
 # 1. Récupération des données ou Web Scraping 
 
@@ -25,6 +28,8 @@ Tout d'abord, comme nous souhaitons nous concentrer uniquement sur les biens loc
 Enfin, nous avons converti l'adresse des biens en coordonnées géographiques grâce à geopandas afin d'utiliser des valeurs numériques et non des chaînes de caractères dans la modélisation. Voici la base obtenue nettoyée. 
 
 <img width="790" alt="Capture d’écran 2022-12-19 à 16 12 37" src="https://user-images.githubusercontent.com/103358913/208457745-7125f42a-885d-4ebb-a981-e1d9f68566aa.png">
+
+
 
 # 3. Preprocessing 
 
