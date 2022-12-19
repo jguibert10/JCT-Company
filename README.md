@@ -15,3 +15,7 @@ Nous avons tout d'abord décidé de récupérer des données à partir du site I
 
 
 Nous avons ainsi réussi à obtenir envrion 40.000 données qu'il nous a ensuite fallu traiter. 
+
+# 2. Traitement des données issues du Web Scraping 
+
+La base issue du Web Scraping comportait plusieurs irrégularités qu'il nous a fallu corriger. Tout d'abord, comme nous souhaitons nous concentrer uniquement sur les biens localisés à Paris, nous avons supprimé de la base tous les biens qui se situent en dehors. Puis nous avons dû créer de nouvelles colonnes pour distinguer les variables. Enfin nous avons effectué un test de vraissemblance afin de supprimer les données qui semblaient irrégulières au vu de leur prix de vente par rapport à la surface et aux tendances du marché parisien.
