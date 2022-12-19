@@ -34,7 +34,7 @@ Enfin, nous avons converti l'adresse des biens en coordonnées géographiques gr
 
 Notre base comporte à la fois des varibales catégorielles ainsi que des variables continues. Nous avons donc dû traiter les deux types de variables séparément. 
 
-* Les variables catégorielles :
+* #### Les variables catégorielles :
 
 Nous avions trois variables catégorielles : la date, le nombre de pièces et le type du bien. 
 
@@ -46,7 +46,7 @@ Nous avons ensuite encoder ces variables grâce à get.dummies() qui les a conve
 
 Pour le type du bien, nous les avons recodé en binaire grâce à LabelEncoder(). 
 
-* Les variables continues : 
+* #### Les variables continues : 
 
 Nous avions trois varibales continues : la surface, la longitude et la latitude. 
 
