@@ -6,8 +6,7 @@ L'objectif du projet est de prédire le prix d'un bien immobilier en fonction de
 
 Notre projet ce divise en 6 étapes :
 
-<img width="940" alt="Capture d’écran 2022-12-19 à 16 21 35" src="https://user-images.githubusercontent.com/103358913/208459531-c4c0501c-c86e-4dc7-b6fb-0589ec5883a6.png">
-
+<img width="936" alt="Capture d’écran 2022-12-19 à 16 22 26" src="https://user-images.githubusercontent.com/103358913/208459710-92b73219-7eca-4baa-878a-7ea69f93f61a.png">
 
 # 1. Récupération des données ou Web Scraping 
 
