@@ -4,7 +4,7 @@ Bienvenue sur le Github de notre projet Python Pour le Data Scientist !
 
 L'objectif du projet est de prédire le prix d'un bien immobilier en fonction de certaines de ses caractéristiques telles que sa surface, son nombre de pièces, sa date de vente, son type (appartement ou maison) et sa location à Paris. 
 
-Notre projet ce divise en 4 étapes :
+Notre projet ce divise en 5 étapes :
 
 # 1. Récupération des données ou Web Scraping 
 
@@ -18,4 +18,15 @@ Nous avons ainsi réussi à obtenir envrion 40.000 données qu'il nous a ensuite
 
 # 2. Traitement des données issues du Web Scraping 
 
-La base issue du Web Scraping comportait plusieurs irrégularités qu'il nous a fallu corriger. Tout d'abord, comme nous souhaitons nous concentrer uniquement sur les biens localisés à Paris, nous avons supprimé de la base tous les biens qui se situent en dehors. Puis nous avons dû créer de nouvelles colonnes pour distinguer les variables. Enfin nous avons effectué un test de vraissemblance afin de supprimer les données qui semblaient irrégulières au vu de leur prix de vente par rapport à la surface et aux tendances du marché parisien.
+La base issue du Web Scraping comportait plusieurs irrégularités qu'il nous a fallu corriger. 
+
+Tout d'abord, comme nous souhaitons nous concentrer uniquement sur les biens localisés à Paris, nous avons supprimé de la base tous les biens qui se situent en dehors. Puis nous avons dû créer de nouvelles colonnes pour distinguer les variables. Ensuite, nous avons effectué un test de vraissemblance afin de supprimer les données qui semblaient irrégulières au vu de leur prix de vente par rapport à la surface et aux tendances du marché parisien.
+
+Enfin, nous avons converti l'adresse des biens en coordonnées géographiques grâce à geopandas afin d'utiliser des valeurs numériques et non des chaînes de caractères dans la modélisation. Voici la base obtenue nettoyée. 
+
+<img width="790" alt="Capture d’écran 2022-12-19 à 16 12 37" src="https://user-images.githubusercontent.com/103358913/208457745-7125f42a-885d-4ebb-a981-e1d9f68566aa.png">
+
+# 3. Preprocessing 
+
+
+
