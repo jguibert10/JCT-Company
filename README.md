@@ -28,5 +28,9 @@ Enfin, nous avons converti l'adresse des biens en coordonnées géographiques gr
 
 # 3. Preprocessing 
 
+Notre base comporte à la fois des varibales catégorielles ainsi que des variables continues. Nous avons donc dû traiter les deux types de variables séparément. 
+
+* Les variables catégorielle :
+
 
 
