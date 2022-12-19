@@ -43,14 +43,9 @@ def runImmoDataScrapping(n: int, filename: str):
             data = {colName : [] for colName in colsInDetailsList}
         
             elements = driver.find_elements(by=By.XPATH, value='//div[@class="flex flex-col gap-2 p-3"]')
-            
+
             for element in tqdm(elements):
-                driver.implicitly_wait(2)            
-                addresse = element.find_element(by=By.XPATH, value='//p[@class="text-gray-700 font-bold truncate"]').text
-                type_bien = element.find_element(by=By.XPATH, value='//p[@class="flex items-center text-sm text-gray-400"]').text
-                prix = element.find_element(by=By.XPATH, value='//p[@class="text-primary-500 font-bold whitespace-nowrap"]').text
-                prix_m2= element.find_element(by=By.XPATH, value='//p[@class="text-gray-400 text-xs text-right"]').text
-                details = element.find_element(by=By.XPATH, value='//div[@class="flex gap-5"]').text
+                addresse, prix, type_bien, prix_m2, *details = element.text.split('\n')
                 
                 data['addresse'].append(addresse)
                 data['prix'].append(prix)
