@@ -29,8 +29,6 @@ Y_train =  pd.read_excel('/Users/charlesrollet/Desktop/Y_train.xls')
 
 
 # On définit de dictionnaires concernant les hyperparamètres de chaque modèle selectionné
-dico_param_lr = {'linearregression__solver': ['gini', 'entropy'],
-         'decisiontreeclassifier__splitter': ['best', 'random']}
 dico_param_tree = {'decisiontreeclassifier__criterion': ['gini', 'entropy'],
          'decisiontreeclassifier__splitter': ['best', 'random']}
 dico_param_rf = {"randomforestclassifier__n_estimators": np.arange(10, 100, 20),
@@ -46,7 +44,6 @@ dico_param_svm = {'svc__kernel':["linear", "poly", "rbf", "sigmoid"],
            "svc__gamma":['scale', "auto"],
                  "svc__probability":[True, False]}
 
-model_lr = make_pipeline(LinearRegression())
 model_rf = make_pipeline(RandomForestClassifier())
 model_tree = make_pipeline(DecisionTreeClassifier())
 model_log = make_pipeline(LogisticRegression())
