@@ -28,13 +28,30 @@ Enfin, nous avons converti l'adresse des biens en coordonnées géographiques gr
 
 <img width="790" alt="Capture d’écran 2022-12-19 à 16 12 37" src="https://user-images.githubusercontent.com/103358913/208457745-7125f42a-885d-4ebb-a981-e1d9f68566aa.png">
 
+# 3. Statistiques descriptives 
 
-
-# 3. Preprocessing 
+# 4. Preprocessing 
 
 Notre base comporte à la fois des varibales catégorielles ainsi que des variables continues. Nous avons donc dû traiter les deux types de variables séparément. 
 
-* Les variables catégorielle :
+* Les variables catégorielles :
 
+Nous avions trois variables catégorielles : la date, le nombre de pièces et le type du bien. 
+
+Pour traiter la date nous avons converti la colonne en datetime puis créé deux nouvelles colonnes contenant l'année de vente et le mois. Nous avons en effet estimé que le jour de vente n'aurait pas réellement d'impact sur l'estimation du prix. Puis nous avons regroupé les mois en demi-semestres pour gagner en pertinance. 
+
+Concernant le nombre de pièces, nous avons décidé de recoder tous les biens de plus de 9 pièces en cet intitulé afin d'éviter tout bruit possible. 
+
+Nous avons ensuite encoder ces variables grâce à getdummies() qui les a converties en indicatrices. 
+
+Pour le type du bien, nous les avons recodé en binaire grâce à LabelEncoder(). 
+
+* Les variables continues : 
+
+Nous avions trois varibales continues : la surface, la longitude et la latitude. 
+
+Nous avons alors créé une fonction nous permettant de choisir le meilleur standardisateur parmis StandardScaler, MinMaxScaler, RobustScaler pour 6 modèles utilisés. Le standardisateur qui avait globalement les meilleurs performances a été (). 
+
+Nous avons ensuite obtenu une base apte à être utilisée pour notre modélisation que nous avons séparé aléatoirement en X_train, X_test, Y_train, Y_test. 
 
 
