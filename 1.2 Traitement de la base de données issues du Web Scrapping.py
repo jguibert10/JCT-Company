@@ -14,7 +14,7 @@ from shapely.geometry import Point
 
 # On lit la base issue du web scraping en renommant de la même manière les colonnes que celles issues de la base du gouv
 df = pd.read_csv("Insérer la base issue du Web Scraping",\
-                 names=['adresse_du_bien', 'type_local', 'valeur_fonciere', 'prix_m2', 'details'],\
+                 names=['adresse_du_bien', 'valeur_fonciere','type_local', 'prix_m2', 'details'],\
                   index_col=0)
 indexNames = df[ df['adresse_du_bien'] == 'addresse'].index
 df.drop(indexNames , inplace=True)
@@ -50,12 +50,17 @@ indexNames = df[df['ville'] != 'PARIS'].index
 df.drop(indexNames , inplace=True)
 
 # On nettoye la colonne details pour contruire les colonnes nombre_pieces_principales, surface_reelle_bati et date_mutation
-df['details']=df['details'].str.replace('\n', ' ')
 df[['nombre_pieces_principales','poubelle']] = df.details.apply(maxi_separator('Surface', 1))
 df[['surface_reelle_bati','poubelle']] = df.poubelle.apply(maxi_separator('m²', 1))
 df[['poubelle','date_mutation']] = df.poubelle.apply(maxi_separator('le', 1))
 df[['poubelle','nombre_pieces_principales']] = df.nombre_pieces_principales.apply(maxi_separator('Pièces', 1))
+df[['date_mutation','poubelle']] = df.date_mutation.apply(maxi_separator('+', 1))
 df.drop(['poubelle', 'details'], axis=1, inplace=True)
+liste_col = ['nombre_pieces_principales', 'surface_reelle_bati', 'date_mutation']
+for col in liste_col:
+    df[col]=df[col].str.split(',').str[1]
+for col in liste_col:
+    df[col]=df[col].str.split("'").str[1]
 
 # On convertit les chaines de caratères numériques en nombres entiers
 list_newcolumn = ['valeur_fonciere','prix_m2','nombre_pieces_principales','surface_reelle_bati']
