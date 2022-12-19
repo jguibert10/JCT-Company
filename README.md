@@ -8,6 +8,20 @@ Notre projet ce divise en 6 étapes :
 
 <img width="936" alt="Capture d’écran 2022-12-19 à 16 22 26" src="https://user-images.githubusercontent.com/103358913/208459710-92b73219-7eca-4baa-878a-7ea69f93f61a.png">
 
+#### Veuillez installer au préalable les packages suivant pour utiliser le reste du programme : 
+
+```
+pip install customtkinter
+```
+
+```
+pip install tkcalendar
+```
+
+```
+pip install tkintermapview
+```
+
 # 1. Récupération des données ou Web Scraping 
 
 Nous avons tout d'abord décidé de récupérer des données à partir du site Immodata (https://www.immo-data.fr/) qui référencie des biens vendus en France en donnant certaines de leurs caractéristiques. Afin de collecter un nombre significatif de données, nous avons enfermé Paris dans un rectangle dont les sommets correspondent à des coordonnées puis diviser ce rectangle en 400 petits rectangles afin de cadriller la ville. 
