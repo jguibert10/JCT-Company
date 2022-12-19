@@ -42,7 +42,7 @@ Pour traiter la date nous avons converti la colonne en datetime puis créé deux
 
 Concernant le nombre de pièces, nous avons décidé de recoder tous les biens de plus de 9 pièces en cet intitulé afin d'éviter tout bruit possible. 
 
-Nous avons ensuite encoder ces variables grâce à getdummies() qui les a converties en indicatrices. 
+Nous avons ensuite encoder ces variables grâce à get.dummies() qui les a converties en indicatrices. 
 
 Pour le type du bien, nous les avons recodé en binaire grâce à LabelEncoder(). 
 
@@ -54,4 +54,12 @@ Nous avons alors créé une fonction nous permettant de choisir le meilleur stan
 
 Nous avons ensuite obtenu une base apte à être utilisée pour notre modélisation que nous avons séparé aléatoirement en X_train, X_test, Y_train, Y_test. 
 
+# 5 Modélisation 
 
+# 6 Visualisation grâce à une interface graphique 
+
+Pour rendre plus interactif notre projet, nous avons décidé de créer une interface graphique grâce à TkinterCustom, un module créé par Tom Schimansky que nous remercions pour sa contribution. Ainsi, on peut indiquer l'adresse du bien rechercher avec son arrondissement (qui sera convertie en coordonnées géographiques), le type de bien grâce à un widget bouton, le nombre de pièces grâce à un compteur, la date du jour grâce à un calendirer, ainsi que le prix d'achat du bien si nous en sommes propriétaire et que nous souhaitons connaitre son estimation. 
+
+Ajouter photo
+
+Lorsque toutes les caractéristiques sont remplies, il ne reste plus qu'à appuyer sur le bouton centrale qui affichera une carte avec la localisation du bien et celle des biens comparés, le prix estimé et la plus value possible en cas de vente si la personne est propriétaire. Enfin un nouveau onglet sera accessible donnant des informations sur les biens de l'arrondissement où est localisé celui qui est recherché. (à voir)
