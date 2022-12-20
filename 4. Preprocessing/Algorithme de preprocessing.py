@@ -11,12 +11,12 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler, RobustScaler,MinMaxScaler
 from sklearn.metrics import accuracy_score
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.neighbors import KNeighborsRegressor
 from sklearn.linear_model import LogisticRegression,LinearRegression
 from sklearn.model_selection import cross_val_score
+from xgboost import XGBRegressor
 
 df_temp = pd.read_excel('/Users/charlesrollet/Desktop/df_traitee_final.xls')
 
@@ -132,11 +132,11 @@ def meilleur_standardiseur(model_name):
 
 # On applique la fonction à 6 modèles différents 
 meilleur_standardiseur(LinearRegression()))
-meilleur_standardiseur(RandomForestClassifier()))
-meilleur_standardiseur(DecisionTreeClassifier()))
+meilleur_standardiseur(RandomForestRegressor()))
+meilleur_standardiseur(DecisionTreeRegressor()))
 meilleur_standardiseur(LogisticRegression()))
-meilleur_standardiseur(KNeighborsClassifier()))
-meilleur_standardiseur(SVC()))
+meilleur_standardiseur(KNeighborsRegressor)))
+meilleur_standardiseur(XGBRegressor()))
 
 #df_new.to_excel('base finale pour le ML')
 #df_new.to_csv('base finale pour le ML')
