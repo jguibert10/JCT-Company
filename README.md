@@ -76,8 +76,8 @@ Nous avons alors créé une fonction nous permettant de choisir le meilleur stan
 |          | Decision Tree Method | Random Forest Method | K Neighbors Regressor  |        SVC         | Logistic Regression | Linear Regression | 
 |:--------:| :------------------: | :------------------: | :--------------------: | :--------------: | :-----------------: | :---------------: |
 | Robust   |          ❌          |          ✅          |           ❌           |        ✅       |         ❌          |        ✅         |
-| Standard |          ❌          |          ❌          |           ✅           |        ❌       |         ❌          |        ❌         |
-| MinMax   |          ✅          |          ❌          |           ❌           |        ❌       |         ✅          |        ❌         |
+| Standard |          ✅          |          ❌          |           ✅           |        ❌       |         ❌          |        ❌         |
+| MinMax   |          ❌          |          ❌          |           ❌           |        ❌       |         ✅          |        ❌         |
 
 
 Nous avons ensuite obtenu une base apte à être utilisée pour notre modélisation que nous avons séparé aléatoirement en X_train, X_test, Y_train, Y_test. 
