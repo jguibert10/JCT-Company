@@ -28,9 +28,9 @@ pip install customtkinter --upgrade
 
 # 0. Annexe  : Travail préliminaire 
 
-Avant de maitriser les différents modèles, le travail de standardisation ou la technique du web scraping, nous avons travaillé sur une base gouvernementale que nous avons nettoyé puis utilisée dans un modèle classique linéaire avant de construite une première interface mais qui comportait plusieurs problèmes. 
+Avant de maîtriser les différents modèles, le travail de standardisation ou la technique du web scraping, nous avons travaillé sur une base gouvernementale que nous avons nettoyée puis utilisée dans un modèle classique linéaire avant de construire un premier interface mais qui comportait plusieurs problèmes. 
 
-Nous avons tenu néanmoins à mettre le code car nous estimons que ce travail a été loin d'être anodin dans la réalisation de notre projet final qui s'est construit au fil des derniers mois. 
+Nous avons tenu néanmoins à mettre ce code car nous estimons que ce travail a été loin d'être anodin dans la réalisation de notre projet final qui s'est construit au fil des mois. 
 
 # 1. Récupération des données ou Web Scraping 
 
@@ -46,7 +46,7 @@ Nous avons ainsi réussi à obtenir envrion 40.000 données qu'il nous a ensuite
 
 La base issue du Web Scraping comportait plusieurs irrégularités qu'il nous a fallu corriger. 
 
-Tout d'abord, comme nous souhaitons nous concentrer uniquement sur les biens localisés à Paris, nous avons supprimé de la base tous les biens qui se situent en dehors. Puis nous avons dû créer de nouvelles colonnes pour distinguer les variables. Ensuite, nous avons effectué un test de vraissemblance afin de supprimer les données qui semblaient irrégulières au vu de leur prix de vente par rapport à la surface et aux tendances du marché parisien.
+Tout d'abord, comme nous souhaitons nous concentrer uniquement sur les biens localisés à Paris, nous avons supprimé de la base tous les biens qui se situent en dehors. Puis nous avons dû créer de nouvelles colonnes pour distinguer les variables. Ensuite, nous avons effectué un test de vraisemblance afin de supprimer les données qui semblaient irrégulières au vu de leur prix de vente par rapport à la surface et aux tendances du marché parisien.
 
 Enfin, nous avons converti l'adresse des biens en coordonnées géographiques grâce à geopandas afin d'utiliser des valeurs numériques et non des chaînes de caractères dans la modélisation. Voici la base obtenue nettoyée. 
 
@@ -64,17 +64,17 @@ Nous avions trois variables catégorielles : la date, le nombre de pièces et le
 
 Pour traiter la date nous avons converti la colonne en datetime puis créé deux nouvelles colonnes contenant l'année de vente et le mois. Nous avons en effet estimé que le jour de vente n'aurait pas réellement d'impact sur l'estimation du prix. Puis nous avons regroupé les mois en trimestres pour gagner en pertinance et regroupées les années inférieures à 2018 pour éviter d'avoir des données trop anciennes. 
 
-Concernant le nombre de pièces, nous avons décidé de recoder tous les biens de plus de 9 pièces en cet intitulé afin d'éviter tout bruit possible. 
+Concernant le nombre de pièces, nous avons décidé de regrouper tous les biens de plus de 9 pièces dans une seule modalité afin d'éviter tout bruit possible. 
 
-Nous avons ensuite encoder ces variables grâce à get_dummies() qui les a converties en indicatrices. 
+Nous avons ensuite encodé ces variables grâce à get_dummies() qui les a converties en indicatrices. 
 
-Pour le type du bien, nous les avons recodé en binaire grâce à LabelEncoder(). 
+Pour le type du bien, nous avons utilisé LabelEncoder() pour le recoder en binaire. 
 
 * #### Les variables continues : 
 
 Nous avions trois varibales continues : la surface, la longitude et la latitude. 
 
-Nous avons alors créé une fonction nous permettant de choisir le meilleur standardisateur parmis StandardScaler, MinMaxScaler, RobustScaler pour 6 modèles utilisés. Nous avons décidé de principalement prendre des regressor puisque nous estimons que notre modèle s'y prête davantage et que nous avons testé des Classifieur mais cela n'a rien donné de très concluant. Nous avons voulu quand même en garder un. Le standardisateur qui avait globalement les meilleurs performances a été Robust. 
+Nous avons alors créé une fonction nous permettant de choisir le meilleur standardiseur parmis StandardScaler, MinMaxScaler, RobustScaler pour 6 modèles utilisés. Nous avons décidé de principalement prendre des regressor puisque nous estimons que notre modèle s'y prête davantage et que nous avons testé des Classifieur mais cela n'a rien donné de très concluant. Nous avons voulu quand même en garder un. Le standardiseur qui avait globalement les meilleurs performances a été Robust. 
 
 * #### Résultat du meilleur standardisateur selon les modèles utilisés : 
 
@@ -89,7 +89,7 @@ Nous avons ensuite obtenu une base apte à être utilisée pour notre modélisat
 
 # 5. Modélisation 
 
-Après avoir choisi le meilleur standardisateur pour chaque modèle utiliser, nous avons créer une fonction permettant de déterminer les hyperparamètres optimaux de chaque modèle parmi ceux sélectionnés. Enfin, nous avons entrainé chacun des modèles selon le standardisateur et les hyperparamètres optimaux. 
+Après avoir choisi le meilleur standardiseur pour chaque modèle utilisé, nous avons créé une fonction permettant de déterminer les hyperparamètres optimaux de chaque modèle parmi ceux sélectionnés. Enfin, nous avons entrainé chacun des modèles selon le standardiseur et les hyperparamètres optimaux. 
 
 * #### Résultats des modèles utilisés : 
 
@@ -98,13 +98,13 @@ Après avoir choisi le meilleur standardisateur pour chaque modèle utiliser, no
 | Score    |          ?           |          ?           |            ?           |          ?             |         ?           |       ?           |
 | Accuracy |          ?           |         ?            |          ?             |          ?             |       ?             |     ?             |
 
-Ainsi, nous avons décidé de choisir le modèle XXX avec comme standardisateur XXX et comme hyperparamètres XXX pour estimer le prix d'un bien selon certaines de ses caractéristiques. 
+Ainsi, nous avons décidé de choisir le modèle XXX avec comme standardiseur XXX et comme hyperparamètres XXX pour estimer le prix d'un bien selon certaines de ses caractéristiques. 
 
 # 6. Visualisation grâce à une interface graphique 
 
-Pour rendre plus interactif notre projet, nous avons décidé de créer une interface graphique grâce à TkinterCustom, un module créé par Tom Schimansky que nous remercions pour sa contribution. Ainsi, on peut indiquer l'adresse du bien rechercher avec son arrondissement (qui sera convertie en coordonnées géographiques), le type de bien grâce à un widget bouton, le nombre de pièces grâce à un compteur, la date du jour grâce à un calendirer, ainsi que le prix d'achat du bien si nous en sommes propriétaire et que nous souhaitons connaitre son estimation. 
+Pour rendre plus interactif notre projet, nous avons décidé de créer une interface graphique grâce à TkinterCustom, un module créé par Tom Schimansky que nous remercions pour sa contribution. Ainsi, on peut indiquer l'adresse du bien recherché avec son arrondissement (qui sera convertie en coordonnées géographiques), le type de bien grâce à un widget bouton, le nombre de pièces grâce à un compteur, la date du jour grâce à un calendrier, ainsi que le prix d'achat du bien si nous en sommes propriétaire et que nous souhaitons connaître son estimation. 
 
 ![320428734_695632085590054_9071431875609854601_n](https://user-images.githubusercontent.com/103358913/208710330-f17ab629-e197-470e-ab9b-b03498178250.png)
 
-Lorsque toutes les caractéristiques sont remplies, il ne reste plus qu'à appuyer sur le bouton centrale qui affichera une carte avec la localisation du bien et celle des biens comparés, le prix estimé et la plus value possible en cas de vente si la personne est propriétaire. Enfin un nouveau onglet sera accessible donnant des informations sur les biens de l'arrondissement où est localisé celui qui est recherché. (à voir)
+Lorsque toutes les caractéristiques sont remplies, il ne reste plus qu'à appuyer sur le bouton centrale qui affichera une carte avec la localisation du bien, le prix estimé et la plus value possible en cas de vente si la personne est propriétaire. Enfin, un onglet sera accessible donnant des informations sur les biens de l'arrondissement.
 
