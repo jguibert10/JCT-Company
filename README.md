@@ -77,7 +77,7 @@ Nous avons alors créé une fonction nous permettant de choisir le meilleur stan
 
 Nous avons ensuite obtenu une base apte à être utilisée pour notre modélisation que nous avons séparé aléatoirement en X_train, X_test, Y_train, Y_test. 
 
-# 5 Modélisation 
+# 5. Modélisation 
 
 Après avoir choisi le meilleur standardisateur pour chaque modèle utiliser, nous avons créer une fonction permettant de déterminer les hyperparamètres optimaux de chaque modèle parmi ceux sélectionnés. Enfin, nous avons entrainé chacun des modèles selon le standardisateur et les hyperparamètres optimaux. 
 
@@ -90,7 +90,7 @@ Après avoir choisi le meilleur standardisateur pour chaque modèle utiliser, no
 
 Ainsi, nous avons décidé de choisir le modèle XXX avec comme standardisateur XXX et comme hyperparamètres XXX pour estimer le prix d'un bien selon certaines de ses caractéristiques. 
 
-# 6 Visualisation grâce à une interface graphique 
+# 6. Visualisation grâce à une interface graphique 
 
 Pour rendre plus interactif notre projet, nous avons décidé de créer une interface graphique grâce à TkinterCustom, un module créé par Tom Schimansky que nous remercions pour sa contribution. Ainsi, on peut indiquer l'adresse du bien rechercher avec son arrondissement (qui sera convertie en coordonnées géographiques), le type de bien grâce à un widget bouton, le nombre de pièces grâce à un compteur, la date du jour grâce à un calendirer, ainsi que le prix d'achat du bien si nous en sommes propriétaire et que nous souhaitons connaitre son estimation. 
 
