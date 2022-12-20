@@ -21,7 +21,7 @@ path = '/Users/charlesrollet/Desktop/chromedriver-2'
 def main():
     parser = argparse.ArgumentParser() 
     parser.add_argument('--n', type=int, default=2,help='Number of items to search')
-    parser.add_argument('--fn', type=str, default='Cadrillage.csv',help='name of the output CSV file')
+    parser.add_argument('--fn', type=str, default='Base_WS_Brute.csv',help='name of the output CSV file')
     args = parser.parse_args()
 
     start = time.time()
