@@ -29,28 +29,25 @@ Y_train =  pd.read_excel('/Users/charlesrollet/Desktop/Y_train.xls')
 
 
 # On définit de dictionnaires concernant les hyperparamètres de chaque modèle selectionné
-dico_param_lr = {'linearregression__solver': ['gini', 'entropy'],
+dico_param_tree = {'decisiontreeclassifier__criterion': ['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
          'decisiontreeclassifier__splitter': ['best', 'random']}
-dico_param_tree = {'decisiontreeclassifier__criterion': ['gini', 'entropy'],
-         'decisiontreeclassifier__splitter': ['best', 'random']}
-dico_param_rf = {"randomforestclassifier__n_estimators": np.arange(10, 100, 20),
-              "randomforestclassifier__criterion": ['gini', 'entropy'],
-              "randomforestclassifier__max_features": ['auto', 'sqrt', 'log2'],
-              "randomforestclassifier__class_weight": [None, 'balanced']}
+dico_param_rf = {"randomforestregressor__n_estimators": np.arange(10, 100, 20),
+              "randomforestregressor__criterion": ['squared_error', 'absolute_error', 'friedman_mse','poisson'],
+              "randomforestregressor__max_features": ['auto', 'sqrt', 'log2']}
 dico_param_log = {'logisticregression__solver': ['newton-cg', 'lbfgs', 
                                                  'liblinear', 'sag', 'saga']}
 dico_param_knn = {"kneighborsclassifier__n_neighbors":np.arange(2, 10, 1),
                  "kneighborsclassifier__weights": ['uniform', "distance"],
                  "kneighborsclassifier__algorithm": ["auto", "ball_tree", "kd_tree", "brute"]}
-dico_param_svm = {'svc__kernel':["linear", "poly", "rbf", "sigmoid"], 
+dico_param_svc = {'svc__kernel':["linear", "poly", "rbf", "sigmoid"], 
            "svc__gamma":['scale', "auto"],
                  "svc__probability":[True, False]}
 
 model_lr = make_pipeline(LinearRegression())
-model_rf = make_pipeline(RandomForestClassifier())
-model_tree = make_pipeline(DecisionTreeClassifier())
+model_rf = make_pipeline(RandomForestRegressor())
+model_tree = make_pipeline(DecisionTreeRegressor())
 model_log = make_pipeline(LogisticRegression())
-model_knn = make_pipeline(KNeighborsClassifier())
+model_knn = make_pipeline(KNeighborsRegressor())
 model_svm = make_pipeline(SVC())
 
 # On souhaite que le recall et la precision soient les scores qui comptent le plus
