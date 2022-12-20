@@ -64,7 +64,7 @@ Pour le type du bien, nous les avons recodé en binaire grâce à LabelEncoder()
 
 Nous avions trois varibales continues : la surface, la longitude et la latitude. 
 
-Nous avons alors créé une fonction nous permettant de choisir le meilleur standardisateur parmis StandardScaler, MinMaxScaler, RobustScaler pour 6 modèles utilisés. Le standardisateur qui avait globalement les meilleurs performances a été (). 
+Nous avons alors créé une fonction nous permettant de choisir le meilleur standardisateur parmis StandardScaler, MinMaxScaler, RobustScaler pour 6 modèles utilisés. Le standardisateur qui avait globalement les meilleurs performances a été Robust. 
 
 * #### Résultat du meilleur standardisateur selon les modèles utilisés : 
 
