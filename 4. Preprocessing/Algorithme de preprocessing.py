@@ -14,9 +14,8 @@ from sklearn.metrics import accuracy_score
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.neighbors import KNeighborsRegressor
-from sklearn.linear_model import LogisticRegression,LinearRegression
+from sklearn.linear_model import LogisticRegression, LinearRegression, BayesianRidge
 from sklearn.model_selection import cross_val_score
-from xgboost import XGBRegressor
 
 df_temp = pd.read_excel('/Users/charlesrollet/Desktop/df_traitee_final.xls')
 
@@ -136,7 +135,7 @@ meilleur_standardiseur(RandomForestRegressor()))
 meilleur_standardiseur(DecisionTreeRegressor()))
 meilleur_standardiseur(LogisticRegression()))
 meilleur_standardiseur(KNeighborsRegressor)))
-meilleur_standardiseur(XGBRegressor()))
+meilleur_standardiseur(BayesianRidge()))
 
 #df_new.to_excel('base finale pour le ML')
 #df_new.to_csv('base finale pour le ML')
