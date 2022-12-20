@@ -29,7 +29,7 @@ df["type_local"]=encoder.fit_transform(df["type_local"])
 # On regroupe les biens de plus de 9 pièces afin d'éviter le bruit que ces varibales pourraient engendrer
 conditions = [df['nombre_pieces_principales']<9, df['nombre_pieces_principales']>=9]
 values = [df['nombre_pieces_principales'].values, 'more_than_9']
-df['test_nb_pieces'] = np.select(conditions, values)
+df['nb_pieces'] = np.select(conditions, values)
 
 # On convertit la date en datetime et on sépare les mois et les années
 df["date_mutation"]=pd.to_datetime(df["date_mutation"]) 
@@ -37,16 +37,20 @@ df['année'] = df['date_mutation'].dt.year
 df['mois'] = df['date_mutation'].dt.month
 df.sort_values('date_mutation', ignore_index=True)
 
-# regroupe les mois en demi semestre
+# regroupe les mois en trimestre et on trie les années
 conditions = [df['mois']<4, (df['mois']>=4) & (df['mois']<7), (df['mois']>=7) & (df['mois']<10),df['mois']>=10]
-choiceliste = ['semestre_1','semestre_2','semestre_3','semestre_4']
-df['semestre'] = np.select(conditions, choiceliste)
+choiceliste = ['trimestre_1','trimestre_2','trimestre_3','trimestre_4']
+df['trimestre'] = np.select(conditions, choiceliste)
+conditions = [df['année']<2018, df['année']>=2018]
+choiceliste = ['antérieur_a_2018',df['année'].values]
+df['année'] = np.select(conditions, choiceliste)
 
 # On standardise les variables catégorielles mois et nombre de pièces
-df_test = pd.get_dummies(df, columns = ['semestre'])
-df_final = pd.get_dummies(df_test, columns = ['test_nb_pieces'])
+df_test = pd.get_dummies(df, columns = ['trimestre'])
+df_annex = pd.get_dummies(df_test, columns = ['année'])
+df_final = pd.get_dummies(df_annex, columns = ['nb_pieces'])
 
-# Création du DataFrame final`
+# Création du DataFrame final
 df_new =pd.DataFrame(df_final)
 new_list = ['date_mutation','nombre_pieces_principales','mois']
 df_new=df_new.drop(new_list,axis=1)
