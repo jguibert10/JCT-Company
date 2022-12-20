@@ -21,6 +21,11 @@ pip install tkcalendar
 ```
 pip install tkintermapview
 ```
+Si vous avez déjà l'habitude d'utiliser ces modules, téléchargez la dernière mise à jour : 
+```
+pip install customtkinter --upgrade
+```
+
 # 0. Annexe  : Travail préliminaire 
 
 Avant de maitriser les différents modèles, le travail de standardisation ou la technique du web scraping, nous avons travaillé sur une base gouvernementale que nous avons nettoyé puis utilisée dans un modèle classique linéaire avant de construite une première interface mais qui comportait plusieurs problèmes. 
