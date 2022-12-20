@@ -73,7 +73,7 @@ Nous avons alors créé une fonction nous permettant de choisir le meilleur stan
 
 * #### Résultat du meilleur standardisateur selon les modèles utilisés : 
 
-|          | Decision Tree Method | Random Forest Method | K Neighbors Classifier |   BayesianRidg   | Logistic Regression | Linear Regression | 
+|          | Decision Tree Method | Random Forest Method | K Neighbors Regressor  |        SVC         | Logistic Regression | Linear Regression | 
 |:--------:| :------------------: | :------------------: | :--------------------: | :--------------: | :-----------------: | :---------------: |
 | Robust   |          ❌          |          ✅          |           ❌           |        ✅       |         ❌          |        ✅         |
 | Standard |          ❌          |          ❌          |           ✅           |        ❌       |         ❌          |        ❌         |
