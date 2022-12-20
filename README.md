@@ -4,7 +4,7 @@
 
 L'objectif du projet est de prédire le prix d'un bien immobilier en fonction de certaines de ses caractéristiques telles que sa surface, son nombre de pièces, sa date de vente, son type (appartement ou maison) et sa location à Paris. 
 
-#### Notre projet se divise en 6 étapes :$
+#### Notre projet se divise en 6 étapes :
 
 <img width="941" alt="Capture d’écran 2022-12-20 à 17 50 35" src="https://user-images.githubusercontent.com/103358913/208721459-287f3f30-0333-4e3c-ae60-d836f0d2359d.png">
 
@@ -21,6 +21,11 @@ pip install tkcalendar
 ```
 pip install tkintermapview
 ```
+# 0. Annexe  : Travail préliminaire 
+
+Avant de maitriser les différents modèles, le travail de standardisation ou la technique du web scraping, nous avons travaillé sur une base gouvernementale que nous avons nettoyé puis utilisée dans un modèle classique linéaire avant de construite une première interface mais qui comportait plusieurs problèmes. 
+
+Nous avons tenu néanmoins à mettre le code car nous estimons que ce travail a été loin d'être anodin dans la réalisation de notre projet final qui s'est construit au fil des derniers mois. 
 
 # 1. Récupération des données ou Web Scraping 
 
@@ -97,3 +102,4 @@ Pour rendre plus interactif notre projet, nous avons décidé de créer une inte
 ![320428734_695632085590054_9071431875609854601_n](https://user-images.githubusercontent.com/103358913/208710330-f17ab629-e197-470e-ab9b-b03498178250.png)
 
 Lorsque toutes les caractéristiques sont remplies, il ne reste plus qu'à appuyer sur le bouton centrale qui affichera une carte avec la localisation du bien et celle des biens comparés, le prix estimé et la plus value possible en cas de vente si la personne est propriétaire. Enfin un nouveau onglet sera accessible donnant des informations sur les biens de l'arrondissement où est localisé celui qui est recherché. (à voir)
+
