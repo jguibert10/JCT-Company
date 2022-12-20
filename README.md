@@ -94,6 +94,6 @@ Ainsi, nous avons décidé de choisir le modèle XXX avec comme standardisateur 
 
 Pour rendre plus interactif notre projet, nous avons décidé de créer une interface graphique grâce à TkinterCustom, un module créé par Tom Schimansky que nous remercions pour sa contribution. Ainsi, on peut indiquer l'adresse du bien rechercher avec son arrondissement (qui sera convertie en coordonnées géographiques), le type de bien grâce à un widget bouton, le nombre de pièces grâce à un compteur, la date du jour grâce à un calendirer, ainsi que le prix d'achat du bien si nous en sommes propriétaire et que nous souhaitons connaitre son estimation. 
 
-<img width="1080" alt="Capture d’écran 2022-12-19 à 16 54 32" src="https://user-images.githubusercontent.com/103358913/208709692-06b304d1-d50a-460a-999d-b9097c1e5adc.png">
+![320428734_695632085590054_9071431875609854601_n](https://user-images.githubusercontent.com/103358913/208710330-f17ab629-e197-470e-ab9b-b03498178250.png)
 
 Lorsque toutes les caractéristiques sont remplies, il ne reste plus qu'à appuyer sur le bouton centrale qui affichera une carte avec la localisation du bien et celle des biens comparés, le prix estimé et la plus value possible en cas de vente si la personne est propriétaire. Enfin un nouveau onglet sera accessible donnant des informations sur les biens de l'arrondissement où est localisé celui qui est recherché. (à voir)
