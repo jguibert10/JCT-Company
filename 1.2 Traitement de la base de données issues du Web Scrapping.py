@@ -43,7 +43,8 @@ df['valeur_fonciere']=df['valeur_fonciere'].str.split('€').str[0]
 df['valeur_fonciere']=df['valeur_fonciere'].str.replace(' ', '')
 
 # On crée deux colonnes à partir de adresse_du_bien qui contient l'adresse brute et la ville
-df[['adresse', 'ville']]=df.adresse_du_bien.str.split(' - ', expand=True)
+indexNames = df[df['adresse_du_bien'].str[-5:]  != 'PARIS'].index
+df.drop(indexNames , inplace=True)
 
 # On supprime toutes les données qui ne sont pas localisées à Paris issues du cadrillage rectangulaire du web scraping
 indexNames = df[df['ville'] != 'PARIS'].index
