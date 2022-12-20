@@ -69,7 +69,7 @@ Pour le type du bien, nous les avons recodé en binaire grâce à LabelEncoder()
 
 Nous avions trois varibales continues : la surface, la longitude et la latitude. 
 
-Nous avons alors créé une fonction nous permettant de choisir le meilleur standardisateur parmis StandardScaler, MinMaxScaler, RobustScaler pour 6 modèles utilisés. Le standardisateur qui avait globalement les meilleurs performances a été Robust. 
+Nous avons alors créé une fonction nous permettant de choisir le meilleur standardisateur parmis StandardScaler, MinMaxScaler, RobustScaler pour 6 modèles utilisés. Nous avons décidé de principalement prendre des regressor puisque nous estimons que notre modèle s'y prête davantage et que nous avons testé des Classifieur mais cela n'a rien donné de très concluant. Nous avons voulu quand même en garder un. Le standardisateur qui avait globalement les meilleurs performances a été Robust. 
 
 * #### Résultat du meilleur standardisateur selon les modèles utilisés : 
 
@@ -88,7 +88,7 @@ Après avoir choisi le meilleur standardisateur pour chaque modèle utiliser, no
 
 * #### Résultats des modèles utilisés : 
 
-|          | Decision Tree Method | Random Forest Method | K Neighbors Classifier | Support Vector Machine | Logistic Regression | Linear Regression | 
+|          | Decision Tree Method | Random Forest Method | K Neighbors Regressor  |          SVC           | Logistic Regression | Linear Regression | 
 |:--------:| :------------------: | :------------------: | :--------------------: | :--------------------: | :-----------------: | :---------------: |
 | Score    |          ?           |          ?           |            ?           |          ?             |         ?           |       ?           |
 | Accuracy |          ?           |         ?            |          ?             |          ?             |       ?             |     ?             |
