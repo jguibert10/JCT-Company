@@ -108,6 +108,7 @@ fig1 = px.choropleth_mapbox(df_final, locations = 'arrondissement',
 
 fig1.show()
 
+# on obtient ainsi la carte interactive donnant le prix moyen du mètre carré pour chacun des arrondissements 
 
 
 
