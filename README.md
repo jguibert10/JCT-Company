@@ -4,9 +4,9 @@
 
 L'objectif du projet est de prédire le prix d'un bien immobilier en fonction de certaines de ses caractéristiques telles que sa surface, son nombre de pièces, sa date de vente, son type (appartement ou maison) et sa location à Paris. 
 
-#### Notre projet se divise en 6 étapes :
+#### Notre projet se divise en 6 étapes :$
 
-<img width="936" alt="Capture d’écran 2022-12-19 à 16 22 26" src="https://user-images.githubusercontent.com/103358913/208459710-92b73219-7eca-4baa-878a-7ea69f93f61a.png">
+<img width="941" alt="Capture d’écran 2022-12-20 à 17 50 35" src="https://user-images.githubusercontent.com/103358913/208721459-287f3f30-0333-4e3c-ae60-d836f0d2359d.png">
 
 #### Veuillez installer au préalable les packages non conventionnels suivant pour utiliser le reste du programme : 
 
