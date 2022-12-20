@@ -11,9 +11,9 @@ import numpy as np
 import pandas as pd
 
 # Models
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.neighbors import KNeighborsRegressor
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression, LinearRegression
 
