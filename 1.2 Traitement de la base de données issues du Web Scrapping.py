@@ -85,4 +85,4 @@ df['latitude'] = df['coordinates'].apply(lambda x: x.point.latitude)
 df.drop(['coordinates', 'adresse_du_bien', 'adresse', 'ville', 'prix_m2'], axis=1, inplace=True)
 df = df[['date_mutation','valeur_fonciere','type_local','surface_reelle_bati','nombre_pieces_principales','longitude','latitude']]
 
-df.to_csv('Clean_WS.csv')
+df.to_csv('Base_WS_traitee.csv')
