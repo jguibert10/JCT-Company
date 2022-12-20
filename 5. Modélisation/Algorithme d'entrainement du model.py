@@ -6,28 +6,29 @@ Created on Sat Dec 17 20:29:05 2022
 @author: charlesrollet
 """
 
-# Import librairies
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
-# Models
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.svm import SVC
 from sklearn.linear_model import LogisticRegression, LinearRegression
 
-# Model Selection and metrics
+
 from sklearn.model_selection import cross_val_score, GridSearchCV, StratifiedKFold
 from sklearn.pipeline import make_pipeline
-from sklearn.metrics import confusion_matrix, r2_score, mean_absolute_error, mean_squared_error,mean_squared_log_error
+from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error,mean_squared_log_error
 
-#import shap  
-
-X_train = pd.read_excel('/Users/charlesrollet/Desktop/X_train_rob.xls')
-X_test = pd.read_excel('/Users/charlesrollet/Desktop/X_test_rob.xls')
-Y_train =  pd.read_excel('/Users/charlesrollet/Desktop/Y_train.xls')
-
+X_train_st = pd.read_csv('X_train_st')
+X_train_rob = pd.read_csv('X_train_rob')
+X_train_mm = pd.read_csv('X_train_mm')
+X_test_st = pd.read_csv('X_test_st')
+X_test_rob = pd.read_csv('X_test_rob')
+X_test_mm = pd.read_csv('X_test_mm')
+Y_test = pd.read_csv('Y_test')
+Y_train = pd.read_csv('Y_train')
 
 # On définit de dictionnaires concernant les hyperparamètres de chaque modèle selectionné
 dico_param_tree = {'decisiontreeregressor__criterion': ['squared_error #(ou 'mse' en fonction de votre version sklearn)#', 'friedman_mse', 'absolute_error', 'poisson'],
