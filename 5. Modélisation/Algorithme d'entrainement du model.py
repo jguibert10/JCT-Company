@@ -29,10 +29,10 @@ Y_train =  pd.read_excel('/Users/charlesrollet/Desktop/Y_train.xls')
 
 
 # On définit de dictionnaires concernant les hyperparamètres de chaque modèle selectionné
-dico_param_tree = {'decisiontreeregressor__criterion': ['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+dico_param_tree = {'decisiontreeregressor__criterion': ['squared_error #(ou 'mse' en fonction de votre version sklearn)#', 'friedman_mse', 'absolute_error', 'poisson'],
          'decisiontreeregressor__splitter': ['best', 'random']}
 dico_param_rf = {"randomforestregressor__n_estimators": np.arange(10, 100, 20),
-              "randomforestregressor__criterion": ['squared_error', 'absolute_error', 'friedman_mse','poisson'],
+              "randomforestregressor__criterion": ['squared_error#(ou 'mse' en fonction de votre version sklearn)#', 'absolute_error', 'friedman_mse','poisson'],
               "randomforestregressor__max_features": ['auto', 'sqrt', 'log2']}
 dico_param_log = {'logisticregression__solver': ['newton-cg', 'lbfgs', 
                                                  'liblinear', 'sag', 'saga']}
