@@ -79,11 +79,16 @@ Nous avons ensuite obtenu une base apte à être utilisée pour notre modélisat
 
 # 5 Modélisation 
 
+Après avoir choisi le meilleur standardisateur pour chaque modèle utiliser, nous avons créer une fonction permettant de déterminer les hyperparamètres optimaux de chaque modèle parmi ceux sélectionnés. Enfin, nous avons entrainé chacun des modèles selon le standardisateur et les hyperparamètres optimaux. 
+
+* #### Résultats des modèles utilisés : 
+
 |          | Decision Tree Method | Random Forest Method | K Neighbors Classifier | Support Vector Machine | Logistic Regression | Linear Regression | 
 |:--------:| :------------------: | :------------------: | :--------------------: | :--------------------: | :-----------------: | :---------------: |
 | Score    |          ?           |          ?           |            ?           |          ?             |         ?           |       ?           |
 | Accuracy |          ?           |         ?            |          ?             |          ?             |       ?             |     ?             |
 
+Ainsi, nous avons décidé de choisir le modèle XXX avec comme standardisateur XXX et comme hyperparamètres XXX pour estimer le prix d'un bien selon certaines de ses caractéristiques. 
 
 # 6 Visualisation grâce à une interface graphique 
 
