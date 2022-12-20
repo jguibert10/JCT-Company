@@ -62,11 +62,11 @@ Notre base comporte à la fois des varibales catégorielles ainsi que des variab
 
 Nous avions trois variables catégorielles : la date, le nombre de pièces et le type du bien. 
 
-Pour traiter la date nous avons converti la colonne en datetime puis créé deux nouvelles colonnes contenant l'année de vente et le mois. Nous avons en effet estimé que le jour de vente n'aurait pas réellement d'impact sur l'estimation du prix. Puis nous avons regroupé les mois en demi-semestres pour gagner en pertinance. 
+Pour traiter la date nous avons converti la colonne en datetime puis créé deux nouvelles colonnes contenant l'année de vente et le mois. Nous avons en effet estimé que le jour de vente n'aurait pas réellement d'impact sur l'estimation du prix. Puis nous avons regroupé les mois en trimestres pour gagner en pertinance et regroupées les années inférieures à 2018 pour éviter d'avoir des données trop anciennes. 
 
 Concernant le nombre de pièces, nous avons décidé de recoder tous les biens de plus de 9 pièces en cet intitulé afin d'éviter tout bruit possible. 
 
-Nous avons ensuite encoder ces variables grâce à get.dummies() qui les a converties en indicatrices. 
+Nous avons ensuite encoder ces variables grâce à get_dummies() qui les a converties en indicatrices. 
 
 Pour le type du bien, nous les avons recodé en binaire grâce à LabelEncoder(). 
 
