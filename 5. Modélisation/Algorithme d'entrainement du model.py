@@ -29,16 +29,16 @@ Y_train =  pd.read_excel('/Users/charlesrollet/Desktop/Y_train.xls')
 
 
 # On définit de dictionnaires concernant les hyperparamètres de chaque modèle selectionné
-dico_param_tree = {'decisiontreeclassifier__criterion': ['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
-         'decisiontreeclassifier__splitter': ['best', 'random']}
+dico_param_tree = {'decisiontreeregressor__criterion': ['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
+         'decisiontreeregressor__splitter': ['best', 'random']}
 dico_param_rf = {"randomforestregressor__n_estimators": np.arange(10, 100, 20),
               "randomforestregressor__criterion": ['squared_error', 'absolute_error', 'friedman_mse','poisson'],
               "randomforestregressor__max_features": ['auto', 'sqrt', 'log2']}
 dico_param_log = {'logisticregression__solver': ['newton-cg', 'lbfgs', 
                                                  'liblinear', 'sag', 'saga']}
-dico_param_knn = {"kneighborsclassifier__n_neighbors":np.arange(2, 10, 1),
-                 "kneighborsclassifier__weights": ['uniform', "distance"],
-                 "kneighborsclassifier__algorithm": ["auto", "ball_tree", "kd_tree", "brute"]}
+dico_param_knn = {"kneighborsregressor__n_neighbors":np.arange(2, 10, 1),
+                 "kneighborsregressor__weights": ['uniform', "distance"],
+                 "kneighborsregressor__algorithm": ["auto", "ball_tree", "kd_tree", "brute"]}
 dico_param_svc = {'svc__kernel':["linear", "poly", "rbf", "sigmoid"], 
            "svc__gamma":['scale', "auto"],
                  "svc__probability":[True, False]}
