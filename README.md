@@ -60,6 +60,7 @@ Dans un premier temps, nous avons ainsi modifié la base de données obtenues pr
 
 Nous avons aussi réalisé des études statistiques afin de vérifier la fiabilité et l’importance des données, ainsi que les corrélations entre chaque variables.
 
+<img width="500" alt="Capture d’écran 2022-12-21 à 13 04 24" src="https://user-images.githubusercontent.com/103358913/208901490-34e59adb-2d63-4f24-a51e-36f7f64b8238.png"><img width="500" alt="Capture d’écran 2022-12-21 à 13 04 56" src="https://user-images.githubusercontent.com/103358913/208901508-e10f11c1-d5e7-49c3-b274-d81f4b265431.png">
 
 # 4. Preprocessing 
 
