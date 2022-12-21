@@ -50,6 +50,8 @@ values = poly_arr
 dict_arr = dict(zip(keys, values))
 
 
+
+
 # ======================== Début - AFFICHAGE ========================
 
 customtkinter.set_appearance_mode("System") 
@@ -295,7 +297,7 @@ class App(customtkinter.CTk):
         self.destroy()
         
     def callback(self):
-        #variables
+        # ======================== Récoltes des variables depuis l'interface ============
         arr=int(self.combobox_arrondissement.get())
         p=int(self.radio_var.get())
         s=int(self.entry_surface.get())
@@ -309,12 +311,47 @@ class App(customtkinter.CTk):
         self.adr_point = self.geolocator.geocode(self.adr)
         self.lat_bien = self.adr_point.latitude
         self.lgt_bien = self.adr_point.longitude
+        
+        # ======================== Estimation ================
+        columns = ['type_local', 'surface_reelle_bati', 'longitude', 'latitude',
+               'trimestre_trimestre_1', 'trimestre_trimestre_2',
+               'trimestre_trimestre_3', 'trimestre_trimestre_4', 'année_2018',
+               'année_2019', 'année_2020', 'année_2021', 'année_2022',
+               'année_antérieur_a_2018', 'nb_pieces_0', 'nb_pieces_1', 'nb_pieces_2',
+               'nb_pieces_3', 'nb_pieces_4', 'nb_pieces_5', 'nb_pieces_6',
+               'nb_pieces_7', 'nb_pieces_8', 'nb_pieces_more_than_9']
+        lst = [[0]*24]
+        
+        lst[0][0] = p #type local
+        lst[0][1] = s #surface
+        lst[0][2] = self.lgt_bien
+        lst[0][3] = self.lat_bien
+        lst[0][14+k] = 1 #nb de pièces
+        
+        #Gestion des dates
+        temp = [int(str(date_today).split('/')[i]) for i in range(len(str(date_today).split('/')))]
+        #temp = [mois, jour, année]
 
-        estimateur = 144000
-        #Affichage Résultat
+        if temp[2] >= 18:
+            lst[0][8+(temp[2]-18)]=1
+        else:
+            lst[0][13]=1 #années
+        lst[0][4+(temp[0]-1)//3]=1 #trimestres
+        
+        #CREATION D'UN DATAFRAME d'une ligne pour la prédiction
+        df_test_1row = pd.DataFrame(lst, columns=columns)
+
+
+
+
+        res_estimateur = 144000 #insère ici le résultat de la prédiction et le reste suit
+        prix_estime = res_estimateur
+        
+        
+        # ======================== Affichage des résultats ============
         
         txt = '     ' + "Valeur estimée du bien :" + '   ' + \
-            str(estimateur) + "€" + "      "
+            str(prix_estime) + "€" + "      "
 
         self.label_res = customtkinter.CTkLabel(master=self.frame_right,
                                                     text=txt,
@@ -323,7 +360,7 @@ class App(customtkinter.CTk):
                                                     corner_radius=6)
         self.label_res.grid(row=1, column=0, pady=30, padx=0)
         
-        plus_value_res = estimateur - u
+        plus_value_res = prix_estime - u
         txt = '     ' + 'Plus value estimée possible :' + '   ' + \
              str(plus_value_res) + "€" + '     '
             #str(plus_value_res) + ' ' + '€'
@@ -373,7 +410,7 @@ class App(customtkinter.CTk):
                                                     corner_radius=6)
         self.label_res_pv.grid(row=1, column=0, pady=10, padx=0)
     
-        prix_m2_bien = estimateur/s
+        prix_m2_bien = prix_estime/s
         diff = prix_m2_bien - liste_prixm2[(arr-75000)-1]
         txt = "Votre bien a un prix du m2 de {}€.".format(int(prix_m2_bien))
         self.label_res_pv = customtkinter.CTkLabel(master=self.tabview.tab("Description"),
