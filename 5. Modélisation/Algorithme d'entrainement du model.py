@@ -9,6 +9,7 @@ Created on Sat Dec 17 20:29:05 2022
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from statistics import mean
 
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
