@@ -75,6 +75,7 @@ def best_param(X, Y, pipeline, dico_param):
     return best_model[0]
 
 # On teste les meilleurs hyperparamètres pour les modèles sélectionnés
+best_model_lr = model_lr
 best_model_log = best_param(X_train, Y_train, model_log, dico_param_log)
 best_model_tree = best_param(X_train, Y_train, model_tree, dico_param_tree)
 best_model_knn = best_param(X_train, Y_train, model_knn, dico_param_knn)
@@ -90,7 +91,6 @@ def fit(mettre_X_train, mettre_X_test, mettre_Y_train, model):
     explained_variance =mean(cross_val_score(model, mettre_X_train, mettre_Y_train, cv=StratifiedKFold(), scoring='explained_variance'))
     mean_poisson_deviance = mean(cross_val_score(model, mettre_X_train, mettre_Y_train, cv=StratifiedKFold(), scoring='neg_mean_poisson_deviance'))
 
-    #print('r2_score: {:.3g}'.format(r2_score))
     print('mean_absolute_error: {:.3g}'.format(mean_absolute_error))
     print('mean_squared_error: {:.3g}'.format(mean_squared_error))
     print('max_error: {:.3g}'.format(max_error))
@@ -105,10 +105,10 @@ mean_absolute_error_tree, mean_squared_error_tree, max_error_tree, explained_var
 mean_absolute_error_knn, mean_squared_error_knn, max_error_knn, explained_variance_knn, mean_poisson_deviance_knn = fit(X_train_rob, X_test_rob, Y_train, best_model_knn)
 mean_absolute_error_svm, mean_squared_error_svm, max_error_svm, explained_variance_svm, mean_poisson_deviance_svm = fit(X_train_st, X_test_st, Y_train, best_model_svm)
 mean_absolute_error_rf, mean_squared_error_rf, max_error_rf, explained_variance_rf, mean_poisson_deviance_rf = fit(X_train_st, X_test_st, Y_train, best_model_rf)
-mean_absolute_error_lr, mean_squared_error_lr, max_error_lr, explained_variance_lr, mean_poisson_deviance_lr = fit(X_train_st, X_test_st, Y_train, model_lr)
+mean_absolute_error_lr, mean_squared_error_lr, max_error_lr, explained_variance_lr, mean_poisson_deviance_lr = fit(X_train_st, X_test_st, Y_train, best_model_lr)
 
 # On crée une fonction qui renvoie les meilleurs features 
-def best_features(model, X_train_df, seuil) :     
+def best_features(model, X_train, seuil) :     
     features_importances = []
     index_best_features = []
     list_results = model.feature_importances_.tolist()
@@ -117,7 +117,7 @@ def best_features(model, X_train_df, seuil) :
         if list_results[i] > seuil :
             index_best_features.append(i)
             features_importances.append(list_results[i])
-            best_features.append(X_train_df.columns[i])
+            best_features.append(X_train.columns[i])
     return best_features, features_importances
 
 # Pour le modèle RandomForest Regressor on regarde les features les plus importantes 
