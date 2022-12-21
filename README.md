@@ -118,10 +118,8 @@ Ainsi, nous avons décidé de choisir le modèle Random Forest Regressor avec co
 
 Pour rendre plus interactif notre projet, nous avons décidé de créer une interface graphique grâce à TkinterCustom, un module créé par Tom Schimansky que nous remercions pour sa contribution. Ainsi, on peut indiquer l'adresse du bien recherché avec son arrondissement (qui sera convertie en coordonnées géographiques), le type de bien grâce à un widget bouton, le nombre de pièces grâce à un compteur, la date du jour grâce à un calendrier, ainsi que le prix d'achat du bien si nous en sommes propriétaire et que nous souhaitons connaître son estimation. 
 
-<img width="960" alt="image_resultat_final" src="https://user-images.githubusercontent.com/116661212/208918745-2d8c6e9b-dfe8-43d8-9be6-7e17ff35026c.png">
+<img width="960" alt="image_resultat_final" src="https://user-images.githubusercontent.com/116661212/208919374-3e626d6b-db98-4507-a745-48488ebbc348.png">
 
 Lorsque toutes les caractéristiques sont remplies, il ne reste plus qu'à appuyer sur le bouton centrale qui affichera une carte avec la localisation du bien, le prix estimé et la plus value possible en cas de vente si la personne est propriétaire. Enfin, nous avons créé un deuxième onglet Description qui permet d'avoir des informations supplémentaires sur le prix au m2 de notre bien estimé en fonction du marché dans son arrondissement.
 
-<img width="960" alt="image_description_finale" src="https://user-images.githubusercontent.com/116661212/208919057-e2c57cd1-e89d-4ffa-8b44-70bf8c3b0479.png">
-
-
+<img width="960" alt="image_description_finale" src="https://user-images.githubusercontent.com/116661212/208919418-ba9b8d16-edea-4bfa-8f15-5b7ba27b8ec4.png">
