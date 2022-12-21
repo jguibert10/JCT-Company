@@ -94,7 +94,7 @@ def fit(mettre_X_train, mettre_X_test, mettre_Y_train, model):
     max_error = mean(cross_val_score(model, mettre_X_train, mettre_Y_train, cv=StratifiedKFold(), scoring='max_error'))
     explained_variance =mean(cross_val_score(model, mettre_X_train, mettre_Y_train, cv=StratifiedKFold(), scoring='explained_variance'))
     mean_poisson_deviance = mean(cross_val_score(model, mettre_X_train, mettre_Y_train, cv=StratifiedKFold(), scoring='neg_mean_poisson_deviance'))
-    predict = model.predict(X_test)
+    predict = model.predict(mettre_X_test)
 
     print('mean_absolute_error: {:.3g}'.format(mean_absolute_error))
     print('mean_squared_error: {:.3g}'.format(mean_squared_error))
