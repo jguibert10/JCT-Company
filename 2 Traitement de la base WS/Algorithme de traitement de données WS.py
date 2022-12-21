@@ -65,9 +65,9 @@ for column in list_newcolumn:
     df[column]=df[column].astype(int)
     
 # On supprime les données qui semblent de mauvaises qualités par rapport à leur prix au m2
-indexNames = df[(df['prix_m2']< 9000)].index
+indexNames = df[(df['prix_m2']< 8000)].index
 df.drop(indexNames , inplace=True)
-indexNames1 = df[(df['prix_m2']> 13000)].index
+indexNames1 = df[(df['prix_m2']> 20000)].index
 df.drop(indexNames1 , inplace=True)
 
 # On convertit les adresses des biens en données géographiques
@@ -82,4 +82,4 @@ df['latitude'] = df['coordinates'].apply(lambda x: x.point.latitude)
 df.drop(['coordinates', 'adresse_du_bien', 'adresse', 'ville', 'prix_m2'], axis=1, inplace=True)
 df = df[['date_mutation','valeur_fonciere','type_local','surface_reelle_bati','nombre_pieces_principales','longitude','latitude']]
 
-df.to_csv('Base_WS_traitee.csv')
+df.to_csv('Base_WS_traitee_.csv')
