@@ -16,6 +16,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.linear_model import LogisticRegression, LinearRegression, BayesianRidge
 from sklearn.model_selection import cross_val_score
+from sklearn.svm import SVC
 
 df_temp = pd.read_csv('Insérer Base_WS_traitee.csv')
 
@@ -139,7 +140,7 @@ meilleur_standardiseur(RandomForestRegressor()))
 meilleur_standardiseur(DecisionTreeRegressor()))
 meilleur_standardiseur(LogisticRegression()))
 meilleur_standardiseur(KNeighborsRegressor)))
-meilleur_standardiseur(BayesianRidge()))
+meilleur_standardiseur(SVC()))
 
 # On enregistre les différentes bases pour les utiliser dans la partie modélisation
 X_train_st.to_csv('X_train_st.csv')
