@@ -17,7 +17,7 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.linear_model import LogisticRegression, LinearRegression, BayesianRidge
 from sklearn.model_selection import cross_val_score
 
-df_temp = pd.read_excel('/Users/charlesrollet/Desktop/df_traitee_final.xls')
+df_temp = pd.read_csv('Insérer Base_WS_traitee.csv')
 
 column = ["date_mutation","valeur_fonciere", "type_local","surface_reelle_bati", "nombre_pieces_principales","longitude", "latitude"]
 df = df_temp[column]
@@ -141,5 +141,7 @@ meilleur_standardiseur(LogisticRegression()))
 meilleur_standardiseur(KNeighborsRegressor)))
 meilleur_standardiseur(BayesianRidge()))
 
-#df_new.to_excel('base finale pour le ML')
-#df_new.to_csv('base finale pour le ML')
+X_train_(meilleur standardisateur).to_csv('X_train_(meilleur standardisateur).csv')
+X_test_(meilleur standardisateur.to_csv('X_test_(meilleur standardisateur).csv')
+Y_train.to_csv('Y_train.csv')
+Y_test.to_csv('Y_test.csv')
