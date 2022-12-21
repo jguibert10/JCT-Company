@@ -1,28 +1,56 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Dec 18 10:09:17 2022
+Created on Tue Dec 20 20:58:12 2022
 
 @author: julie
 """
 
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Sat Oct 22 10:54:55 2022
-@author: charlesrollet
-"""
+Created on Sun Dec 18 10:09:17 2022
 
-import tkinter
+@author: julie
+"""
+ # ======================== IMPORT préambule ========================
+#package classique
+import pandas as pd
+import numpy as np
+
+#package pour l'affichage graphique
+import tkinter as tk
 import tkinter.messagebox
 import tkintermapview
 import customtkinter
 import tkcalendar
 import geopandas
 from geopy.geocoders import Nominatim 
-import pandas as pd
-import numpy as np
 
-global df
+#package pour la récupération des coordonnées des arrondissements de Paris
+import geojson 
+import folium
+import webbrowser
+
+ # ======================== Préambule - Récupération coordonnées ========================
+ 
+geo = geojson.load(open("arrondissements.geojson"))
+
+coord_arr = []
+poly_arr = []
+for i in range(20):
+    txt = 'poly' + str(i+1)
+    coord_arr.append(txt)
+    poly = list(geo["features"][i]["geometry"].values())[1][0]
+    for k in range(len(poly)):
+        poly[k][0], poly[k][1] = poly[k][1], poly[k][0]
+    poly.append(poly[0])
+    poly_arr.append(poly)
+
+keys = coord_arr
+values = poly_arr
+dict_arr = dict(zip(keys, values))
+
+
+# ======================== Début - AFFICHAGE ========================
 
 customtkinter.set_appearance_mode("System") 
 customtkinter.set_default_color_theme("dark-blue") 
@@ -205,8 +233,8 @@ class App(customtkinter.CTk):
         self.optionmenu.grid(row=7, column=0, padx=10, pady=30, sticky="ew")
 
         
-        # ======================== frame_right_down ========================
-        # Création frame de droite
+        # ======================== frame_right ========================
+        # Création tabview droite
         
         self.tabview = customtkinter.CTkTabview(self, width=600)
         self.tabview.grid(row=0, column=1, padx=(20, 0), pady=(20, 0), sticky="nsew")
@@ -215,20 +243,42 @@ class App(customtkinter.CTk):
         self.tabview.tab("Résultat").grid_columnconfigure(0, weight=1)  # configure grid of individual tabs
         self.tabview.tab("Description").grid_columnconfigure(0, weight=1)
         
+        # Création frame dans tabview Résultat
+        self.frame_right_up = customtkinter.CTkFrame(master=self.tabview.tab("Résultat"),
+                                                 width=100,
+                                                 corner_radius=0)
+        self.frame_right_up.grid(row=0, column=0, sticky="nswe")
         
-        self.map= tkintermapview.TkinterMapView(self.tabview.tab("Résultat"), width=600, height=450)
+        self.frame_right = customtkinter.CTkFrame(master=self.tabview.tab("Résultat"),
+                                                 width=20,
+                                                 corner_radius=0, 
+                                                 fg_color = "transparent")
+        self.frame_right.grid(row=1, column=0, sticky="nswe")
+
+        self.map= tkintermapview.TkinterMapView(master=self.frame_right_up, width=1000, height=450)
         self.map.set_position(48.857345 , 2.347999)
         self.map.set_zoom(12)
         self.map.grid(row=0, column=0, sticky="nswe", padx=(0, 0), pady=(0, 0))
         
+        self.botonestimation=customtkinter.CTkButton(master=self.frame_right, text='Estimation', command=self.callback)
+        self.botonestimation.grid(row=2, column=3, pady=10, padx=0)
+
+        # Tabview description
+        #logo = tk.PhotoImage(file="image_visualisation.png")
+        #self.label_calendrier = customtkinter.CTkLabel(master=self.tabview.tab("Description"),
+        #                                            corner_radius=0,
+        #                                            image=logo)
+        #self.label_calendrier.grid(row=0, column=0, pady=30, padx=0)
         
-        self.botonestimation=customtkinter.CTkButton(self.tabview.tab("Résultat"), text='Estimation', command=self.callback)
-        self.botonestimation.grid(row=3, column=1, pady=30, padx=0)
-        #self.botonestimation.place(x=550, y=550)
-        
+
+        self.map2 = tkintermapview.TkinterMapView(master=self.tabview.tab("Description"), width=1000, height=450)
+        self.map2.set_position(48.857345 , 2.347999)
+        self.map2.set_zoom(12)
+        self.map2.grid(row=0, column=0, sticky="nswe", padx=(0, 0), pady=(0, 0))
+
     # ======================== Espace des fonctions ============
     def test(self):
-        self.label_res = customtkinter.CTkLabel(master=self.tabview.tab("Résultat"),
+        self.label_res = customtkinter.CTkLabel(master=self.frame_right,
                                                     text="3 mille euros",
                                                     font=("Roboto Medium", -14),
                                                     fg_color = 'transparent',
@@ -259,36 +309,89 @@ class App(customtkinter.CTk):
         self.adr_point = self.geolocator.geocode(self.adr)
         self.lat_bien = self.adr_point.latitude
         self.lgt_bien = self.adr_point.longitude
+
+        estimateur = 144000
+        #Affichage Résultat
         
         txt = '     ' + "Valeur estimée du bien :" + '   ' + \
-            "3€" + str(p) + str(s) + str(k) + str(u) + str(date_today) + '     '
-        #    str(self.res[0]) + ' ' + '€'
-        self.label_res = customtkinter.CTkLabel(master=self.tabview.tab("Résultat"),
+            str(estimateur) + "€" + "      "
+
+        self.label_res = customtkinter.CTkLabel(master=self.frame_right,
                                                     text=txt,
                                                     font=("Roboto Medium", -14),
                                                     fg_color = 'transparent',
                                                     corner_radius=6)
         self.label_res.grid(row=1, column=0, pady=30, padx=0)
         
-        #plus_value_res = self.res[0] - u
+        plus_value_res = estimateur - u
         txt = '     ' + 'Plus value estimée possible :' + '   ' + \
-            "3€" + '     '
+             str(plus_value_res) + "€" + '     '
             #str(plus_value_res) + ' ' + '€'
-        self.label_res_pv = customtkinter.CTkLabel(master=self.tabview.tab("Résultat"),
+        self.label_res_pv = customtkinter.CTkLabel(master=self.frame_right,
                                                     text=txt,
                                                     font=("Roboto Medium", -14),
                                                     fg_color = 'transparent',
                                                     corner_radius=6)
         self.label_res_pv.grid(row=2, column=0, pady=0, padx=0)
         
-        #carte
-        self.map= tkintermapview.TkinterMapView(self.tabview.tab("Résultat"), width=600, height=450)
-        self.map.set_position(48.857345 , 2.347999)
+        #carte Résultat
+        self.map= tkintermapview.TkinterMapView(master=self.frame_right_up, width=1000, height=450)
+        self.map.set_position(48.857345, 2.347999)
         self.map.set_zoom(12)
         self.map.grid(row=0, column=0, sticky="nswe", padx=(0, 0), pady=(0, 0))
         self.map.set_marker(self.lat_bien,self.lgt_bien)
-       
-
+        
+        #carte Descritption
+        
+        self.map2 = tkintermapview.TkinterMapView(master=self.tabview.tab("Description"), width=1000, height=450)
+        self.map2.set_position(48.857345 , 2.347999)
+        self.map2.set_zoom(12)
+        self.map2.grid(row=0, column=0, sticky="nswe", padx=(0, 0), pady=(0, 0))
+        
+        encodage_dict_arr = [7, 15, 4, 16, 19, 9, 5, 1, 6, 3, 0, 10, 13, 14, 2, 17, 8, 11, 12, 18]
+        index_arr = encodage_dict_arr[(arr-75000)-1]
+        polygon_1 = self.map2.set_polygon(list(dict_arr.values())[index_arr],
+                                            fill_color=None,
+                                            outline_color="green",
+                                            border_width=5,
+                                            #command=polygon_click,
+                                            #name="switzerland_polygon"
+                                            )
+        # methods
+        polygon_1.add_position(0, 0, index=5)
+        polygon_1.remove_position(0, 0)
+        #polygon_1.delete()
+        
+        #Affichage Description
+        liste_prixm2 = [13490, 11910, 12700, 12170, 12610, 13950, 13080, 11730, 10800, 10160,\
+                10320, 9720, 9210, 10070, 9950, 10950, 10320, 9670, 8900, 9170]
+        txt = "Le {0}ème arrondissement de Paris a un prix moyen du mettre carré de {1}€.".format(str(arr-75000), liste_prixm2[arr-75000-1])
+        self.label_res_pv = customtkinter.CTkLabel(master=self.tabview.tab("Description"),
+                                                    text=txt,
+                                                    font=("Roboto Medium", -14),
+                                                    fg_color = 'transparent',
+                                                    corner_radius=6)
+        self.label_res_pv.grid(row=1, column=0, pady=10, padx=0)
+    
+        prix_m2_bien = estimateur/s
+        diff = prix_m2_bien - liste_prixm2[(arr-75000)-1]
+        txt = "Votre bien a un prix du m2 de {}€.".format(int(prix_m2_bien))
+        self.label_res_pv = customtkinter.CTkLabel(master=self.tabview.tab("Description"),
+                                                    text=txt,
+                                                    font=("Roboto Medium", -14),
+                                                    fg_color = 'transparent',
+                                                    corner_radius=6)
+        self.label_res_pv.grid(row=2, column=0, pady=10, padx=0)
+        if diff >= 0:
+            txt = "Le prix au m2 de votre bien est {}€ supérieur au prix moyen du m2 de votre arrondissement.".format(int(abs(diff)))
+        else:
+            txt = "Le prix au m2 de votre bien est {}€ inférieur au prix moyen du m2 de votre arrondissement.".format(int(abs(diff)))
+        self.label_res_pv = customtkinter.CTkLabel(master=self.tabview.tab("Description"),
+                                                    text=txt,
+                                                    font=("Roboto Medium", -14),
+                                                    fg_color = 'transparent',
+                                                    corner_radius=6)
+        self.label_res_pv.grid(row=3, column=0, pady=10, padx=0)
 if __name__ == "__main__":
     app = App()
     app.mainloop()
