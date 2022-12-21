@@ -52,7 +52,12 @@ Enfin, nous avons converti l'adresse des biens en coordonnées géographiques gr
 
 <img width="790" alt="Capture d’écran 2022-12-19 à 16 12 37" src="https://user-images.githubusercontent.com/103358913/208457745-7125f42a-885d-4ebb-a981-e1d9f68566aa.png">
 
-# 3. Statistiques descriptives 
+# 3. Statistiques descriptives
+
+Après récupération de la base de données, nous avons réalisé une série de statistiques descriptives afin de décrire de façon synthétique et parlante les données immobilières pour mieux les analyser.
+Dans un premier temps, nous avons ainsi modifié la base de données obtenues précédemment, en transformant les coordonnées géographiques de chaque bien en une adresse postale. Nous avons également rajouté certaines variables qui nous paraissaient judicieuses, telles que le prix du mètre carré pour chaque bien. De fait, nous avons alors réalisé une carte interactive de la ville de Paris, avec pour chaque arrondissement, le prix moyen (au mètre carré) auquel les biens immobiliers sont vendus. 
+Nous avons aussi réalisé des études statistiques afin de vérifier la fiabilité et l’importance des données, ainsi que les corrélations entre chaque variables.
+
 
 # 4. Preprocessing 
 
