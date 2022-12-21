@@ -77,11 +77,11 @@ def best_param(X, Y, pipeline, dico_param):
 
 # On teste les meilleurs hyperparamètres pour les modèles sélectionnés
 best_model_lr = model_lr
-best_model_log = best_param(X_train, Y_train, model_log, dico_param_log)
-best_model_tree = best_param(X_train, Y_train, model_tree, dico_param_tree)
-best_model_knn = best_param(X_train, Y_train, model_knn, dico_param_knn)
-best_model_svm = best_param(X_train, Y_train, model_svm, dico_param_svm)
-best_model_rf = best_param(X_train, Y_train, model_rf, dico_param_rf)
+best_model_log = best_param(X_train_st, Y_train, model_log, dico_param_log)
+best_model_tree = best_param(X_train_st, Y_train, model_tree, dico_param_tree)
+best_model_knn = best_param(X_train_st, Y_train, model_knn, dico_param_knn)
+best_model_svm = best_param(X_train_rob, Y_train, model_svm, dico_param_svm)
+best_model_rf = best_param(X_train_rob, Y_train, model_rf, dico_param_rf)
 
 # On crée une fonction pour tester le meilleur modèle et obtenir différents résultats sur ses performances 
 def fit(mettre_X_train, mettre_X_test, mettre_Y_train, model):
