@@ -103,12 +103,16 @@ Après avoir choisi le meilleur standardiseur pour chaque modèle utilisé, nous
 
 * #### Résultats des modèles utilisés : 
 
-|          | Decision Tree Method | Random Forest Method | K Neighbors Regressor  |          SVC           | Logistic Regression | Linear Regression | 
-|:--------:| :------------------: | :------------------: | :--------------------: | :--------------------: | :-----------------: | :---------------: |
-| Score    |         0.86         |         0.90         |          0.90          |          ?             |         0.1         |        0,91       |
-| Accuracy |          ?           |         ?            |          ?             |          ?             |       ?             |     ?             |
+|                       | Decision Tree Method | Random Forest Method | K Neighbors Regressor  |     SVC     | Logistic Regression | Linear Regression | 
+|:---------------------:| :------------------: | :------------------: | :--------------------: | :---------: | :-----------------: | :---------------: |
+| Score                 |         0.86         |         0.90         |          0.90          |             |         0.1         |      0,91         |      
+| mean_absolute_error   |                      |                      |                        |             |                     |                   |
+| mean_squared_error    |                      |                      |                        |             |                     |                   |
+| max_error             |                      |                      |                        |             |                     |                   |
+| explained_variance    |                      |                      |                        |             |                     |                   |
+| mean_poisson_deviance |                      |                      |                        |             |                     |                   |
 
-Ainsi, nous avons décidé de choisir le modèle XXX avec comme standardiseur XXX et comme hyperparamètres XXX pour estimer le prix d'un bien selon certaines de ses caractéristiques. 
+Ainsi, nous avons décidé de choisir le modèle Random Forest Regressor avec comme standardiseur Robust et comme hyperparamètres XXX pour estimer le prix d'un bien selon certaines de ses caractéristiques. 
 
 # 6. Visualisation grâce à une interface graphique 
 
