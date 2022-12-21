@@ -126,7 +126,7 @@ def best_features(model, X_train, seuil) :
     return best_features, features_importances
 
 # Pour le modèle RandomForest Regressor on regarde les features les plus importantes 
-mean_absolute_error, mean_squared_error, max_error, explained_variance, mean_poisson_deviance = fit(X_train_st, X_test_st, Y_train, best_model_rf)
+mean_absolute_error, mean_squared_error, max_error, explained_variance, mean_poisson_deviance, predict = fit(X_train_st, X_test_st, Y_train, best_model_rf)
 
 best_features_rf, features_importance_rf = best_features(best_model_rf, X_train_st, 0.01)
 
