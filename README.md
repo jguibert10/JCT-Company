@@ -86,11 +86,13 @@ Nous avons alors créé une fonction nous permettant de choisir le meilleur stan
 
 * #### Résultat du meilleur standardisateur selon les modèles utilisés : 
 
-|          | Decision Tree Method | Random Forest Method | K Neighbors Regressor  |        SVC       | Logistic Regression | Linear Regression | 
-|:--------:| :------------------: | :------------------: | :--------------------: | :--------------: | :-----------------: | :---------------: |
-| Robust   |          ❌          |          ❌          |           ✅           |        ✅       |         ❌          |        ✅         |
-| Standard |          ❌          |          ✅          |           ❌           |        ❌       |         ✅          |        ✅         |
-| MinMax   |          ✅          |          ❌          |           ❌           |        ❌       |         ❌          |        ❌         |
+|          | Decision Tree Method | Random Forest Method | K Neighbors Classifier |         SCV            | Logistic Regression | Linear Regression | 
+|:--------:| :------------------: | :------------------: | :--------------------: | :--------------------: | :-----------------: | :---------------: |
+| Robust   |          ❌          |          ✅          |           ❌           |          ✅           |         ❌          |        ✅         |
+| Standard |          ✅          |          ❌          |           ✅           |          ❌           |         ✅          |        ❌         |
+| MinMax   |          ❌          |          ❌          |           ❌           |          ❌           |         ❌          |        ❌         |
+
+
 
 
 Nous avons ensuite obtenu une base apte à être utilisée pour notre modélisation que nous avons séparé aléatoirement en X_train, X_test, Y_train, Y_test. En réalité, on observe que la différence entre les standardisateurs est assez négligeable mais cette démarche nous a sembler intéressante dans le cadre du projet.  
