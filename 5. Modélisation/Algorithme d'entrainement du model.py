@@ -55,6 +55,9 @@ model_svm = make_pipeline(SVC())
 # On souhaite que le recall et la precision soient les scores qui comptent le plus
 SCORING = 'r2' 
 
+# On adopte le R2 comme score de base étant dans le cas de regressions. 
+SCORING = 'r2' 
+
 # On crée une fonction qui donne les meilleurs hyperparamètres de chaque modèle
 def best_param(X, Y, pipeline, dico_param):
     
