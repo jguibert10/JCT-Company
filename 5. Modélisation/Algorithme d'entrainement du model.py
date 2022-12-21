@@ -21,14 +21,14 @@ from sklearn.model_selection import cross_val_score, GridSearchCV, StratifiedKFo
 from sklearn.pipeline import make_pipeline
 from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error,mean_squared_log_error
 
-X_train_st = pd.read_csv('X_train_st')
-X_train_rob = pd.read_csv('X_train_rob')
-X_train_mm = pd.read_csv('X_train_mm')
-X_test_st = pd.read_csv('X_test_st')
-X_test_rob = pd.read_csv('X_test_rob')
-X_test_mm = pd.read_csv('X_test_mm')
-Y_test = pd.read_csv('Y_test')
-Y_train = pd.read_csv('Y_train')
+X_train_st = pd.read_csv('X_train_st.cvs')
+X_train_rob = pd.read_csv('X_train_rob.cvs')
+X_train_mm = pd.read_csv('X_train_mm.cvs')
+X_test_st = pd.read_csv('X_test_st.cvs')
+X_test_rob = pd.read_csv('X_test_rob.cvs')
+X_test_mm = pd.read_csv('X_test_mm.cvs')
+Y_test = pd.read_csv('Y_test.cvs')
+Y_train = pd.read_csv('Y_train.cvs')
 
 # On définit de dictionnaires concernant les hyperparamètres de chaque modèle selectionné
 dico_param_tree = {'decisiontreeregressor__criterion': ['squared_error #(ou 'mse' en fonction de votre version sklearn)#', 'friedman_mse', 'absolute_error', 'poisson'],
