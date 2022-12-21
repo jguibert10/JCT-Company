@@ -341,12 +341,11 @@ class App(customtkinter.CTk):
         #CREATION D'UN DATAFRAME d'une ligne pour la prédiction
         df_test_1row = pd.DataFrame(lst, columns=columns)
 
+        mean_absolute_error, mean_squared_error, max_error, explained_variance, mean_poisson_deviance, predict = fit(X_train_st, X_test_st, Y_train, best_model_rf)
 
 
-
-        res_estimateur = 144000 #insère ici le résultat de la prédiction et le reste suit
+        res_estimateur = predict #insère ici le résultat de la prédiction et le reste suit
         prix_estime = res_estimateur
-        
         
         # ======================== Affichage des résultats ============
         
