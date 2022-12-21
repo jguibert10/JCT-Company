@@ -105,14 +105,17 @@ Après avoir choisi le meilleur standardiseur pour chaque modèle utilisé, nous
 
 |                       | Decision Tree Method | Random Forest Method | K Neighbors Regressor  |     SVC     | Logistic Regression | Linear Regression | 
 |:---------------------:| :------------------: | :------------------: | :--------------------: | :---------: | :-----------------: | :---------------: |
-| Score                 |         0.86         |         0.90         |          0.90          |             |         0.1         |      0,91         |      
-| mean_absolute_error   |                      |                      |                        |             |                     |                   |
-| mean_squared_error    |                      |                      |                        |             |                     |                   |
-| max_error             |                      |                      |                        |             |                     |                   |
-| explained_variance    |                      |                      |                        |             |                     |                   |
-| mean_poisson_deviance |                      |                      |                        |             |                     |                   |
+| Score                 |         0.85         |         0.91         |          0.89          |     0,1     |         0.01        |        0,89       |      
+| mean_absolute_error   |      -1.24e+05       |      -9.19e+04       |       -1.07e+05        |     NaN     |         NaN         |     -1.07e+05     |
+| mean_squared_error    |      -3.88e+10       |      -2.16e+10       |       -2.83e+10        |     NaN     |         NaN         |     -2.68e+10     |
+| max_error             |      -1.26e+06       |      -9.73e+05       |       -1.04e+06        |     NaN     |         NaN         |     -1.04e+06     |
+| explained_variance    |         0.852        |         0.918        |          0.892         |     NaN     |         NaN         |        0.898      |
+| mean_poisson_deviance |      -3.89e+04       |      -2.08e+04       |       -2.93e+04        |     NaN     |         NaN         |        NaN        |
 
-Ainsi, nous avons décidé de choisir le modèle Random Forest Regressor avec comme standardiseur Robust et comme hyperparamètres XXX pour estimer le prix d'un bien selon certaines de ses caractéristiques. 
+
+
+
+Ainsi, nous avons décidé de choisir le modèle Random Forest Regressor avec comme standardiseur Robust et comme hyperparamètres (criterion='friedman_mse', n_estimators=90) pour estimer le prix d'un bien selon certaines de ses caractéristiques. (SVC a des NaN car les scores utilisés sont propres aux regressions). 
 
 # 6. Visualisation grâce à une interface graphique 
 
