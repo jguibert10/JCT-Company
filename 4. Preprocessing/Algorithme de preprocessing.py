@@ -141,7 +141,13 @@ meilleur_standardiseur(LogisticRegression()))
 meilleur_standardiseur(KNeighborsRegressor)))
 meilleur_standardiseur(BayesianRidge()))
 
-X_train_(meilleur standardisateur).to_csv('X_train_(meilleur standardisateur).csv')
-X_test_(meilleur standardisateur.to_csv('X_test_(meilleur standardisateur).csv')
-Y_train.to_csv('Y_train.csv')
-Y_test.to_csv('Y_test.csv')
+# On enregistre les différentes bases pour les utiliser dans la partie modélisation
+X_train_st.to_csv('X_train_st.cvs')
+X_train_rob.to_csv('X_train_rob.cvs')
+X_train_mm.to_csv('X_train_mm.cvs')
+X_test_st.to_csv('X_test_st.cvs')
+X_test_rob.to_csv('X_test_rob.cvs')
+X_test_mm.to_csv('X_test_mm.cvs')
+Y_test.to_csv('Y_test.cvs')
+Y_train.to_csv('Y_train.cvs')
+
