@@ -16,7 +16,7 @@ from tqdm import tqdm
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
-path = '/Users/charlesrollet/Desktop/chromedriver-2'
+path = 'Insérer le chemin de votre webdriver (chromedriver est conseillé)'
            
 def main():
     parser = argparse.ArgumentParser() 
