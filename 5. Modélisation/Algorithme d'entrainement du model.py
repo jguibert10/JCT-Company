@@ -94,6 +94,7 @@ def fit(mettre_X_train, mettre_X_test, mettre_Y_train, model):
     max_error = mean(cross_val_score(model, mettre_X_train, mettre_Y_train, cv=StratifiedKFold(), scoring='max_error'))
     explained_variance =mean(cross_val_score(model, mettre_X_train, mettre_Y_train, cv=StratifiedKFold(), scoring='explained_variance'))
     mean_poisson_deviance = mean(cross_val_score(model, mettre_X_train, mettre_Y_train, cv=StratifiedKFold(), scoring='neg_mean_poisson_deviance'))
+    predict = model.predict(X_test)
 
     print('mean_absolute_error: {:.3g}'.format(mean_absolute_error))
     print('mean_squared_error: {:.3g}'.format(mean_squared_error))
@@ -101,15 +102,15 @@ def fit(mettre_X_train, mettre_X_test, mettre_Y_train, model):
     print('explained_variance: {:.3g}'.format(explained_variance))
     print('mean_poisson_deviance: {:.3g}'.format(mean_poisson_deviance))
     
-    return mean_absolute_error, mean_squared_error, max_error, explained_variance, mean_poisson_deviance
+    return mean_absolute_error, mean_squared_error, max_error, explained_variance, mean_poisson_deviance, predict
 
 # On obtient différents scores pour le modèle qui obtient la meilleur précision suite à best_paraù
-mean_absolute_error_log, mean_squared_error_log, max_error_log, explained_variance_log, mean_poisson_deviance_log = fit(X_train_st, X_test_st, Y_train, best_model_log)
-mean_absolute_error_tree, mean_squared_error_tree, max_error_tree, explained_variance_tree, mean_poisson_deviance_tree = fit(X_train_mm, X_test_mm, Y_train, best_model_tree)
-mean_absolute_error_knn, mean_squared_error_knn, max_error_knn, explained_variance_knn, mean_poisson_deviance_knn = fit(X_train_rob, X_test_rob, Y_train, best_model_knn)
-mean_absolute_error_svm, mean_squared_error_svm, max_error_svm, explained_variance_svm, mean_poisson_deviance_svm = fit(X_train_st, X_test_st, Y_train, best_model_svm)
-mean_absolute_error_rf, mean_squared_error_rf, max_error_rf, explained_variance_rf, mean_poisson_deviance_rf = fit(X_train_st, X_test_st, Y_train, best_model_rf)
-mean_absolute_error_lr, mean_squared_error_lr, max_error_lr, explained_variance_lr, mean_poisson_deviance_lr = fit(X_train_st, X_test_st, Y_train, best_model_lr)
+mean_absolute_error_log, mean_squared_error_log, max_error_log, explained_variance_log, mean_poisson_deviance_log, predict_log = fit(X_train_st, X_test_st, Y_train, best_model_log)
+mean_absolute_error_tree, mean_squared_error_tree, max_error_tree, explained_variance_tree, mean_poisson_deviance_tree, predict_tree = fit(X_train_mm, X_test_mm, Y_train, best_model_tree)
+mean_absolute_error_knn, mean_squared_error_knn, max_error_knn, explained_variance_knn, mean_poisson_deviance_knn, predict_knn = fit(X_train_rob, X_test_rob, Y_train, best_model_knn)
+mean_absolute_error_svm, mean_squared_error_svm, max_error_svm, explained_variance_svm, mean_poisson_deviance_svm, predict_svm = fit(X_train_st, X_test_st, Y_train, best_model_svm)
+mean_absolute_error_rf, mean_squared_error_rf, max_error_rf, explained_variance_rf, mean_poisson_deviance_rf, predict_rf = fit(X_train_st, X_test_st, Y_train, best_model_rf)
+mean_absolute_error_lr, mean_squared_error_lr, max_error_lr, explained_variance_lr, mean_poisson_deviance_lr, predict_lr = fit(X_train_st, X_test_st, Y_train, best_model_lr)
 
 # On crée une fonction qui renvoie les meilleurs features 
 def best_features(model, X_train, seuil) :     
