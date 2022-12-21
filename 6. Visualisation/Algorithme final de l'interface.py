@@ -11,7 +11,7 @@ Created on Sun Dec 18 10:09:17 2022
 
 @author: julie
 """
- # ======================== IMPORT préambule ========================
+# ======================== IMPORT préambule ========================
 #package classique
 import pandas as pd
 import numpy as np
@@ -30,7 +30,7 @@ import geojson
 import folium
 import webbrowser
 
- # ======================== Préambule - Récupération coordonnées ========================
+# ======================== Préambule - Récupération coordonnées ========================
  
 geo = geojson.load(open("arrondissements.geojson"))
 
@@ -343,8 +343,8 @@ class App(customtkinter.CTk):
 
         mean_absolute_error, mean_squared_error, max_error, explained_variance, mean_poisson_deviance, predict = fit(X_train_st, X_test_st, Y_train, best_model_rf)
 
-
-        res_estimateur = predict #insère ici le résultat de la prédiction et le reste suit
+        res_estimateur = predict 
+        #res_estimateur = 144000 si ca ne fonctionne pas pour voir un résultat
         prix_estime = res_estimateur
         
         # ======================== Affichage des résultats ============
