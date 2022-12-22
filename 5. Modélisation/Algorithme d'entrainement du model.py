@@ -76,7 +76,7 @@ def best_param(X, Y, pipeline, dico_param):
     return best_model[0]
 
 # On teste les meilleurs hyperparamètres pour les modèles sélectionnés
-best_model_lr = model_lr
+best_model_lr = best_param(X_train_st, Y_train, model_lr, {})
 best_model_log = best_param(X_train_st, Y_train, model_log, dico_param_log)
 best_model_tree = best_param(X_train_st, Y_train, model_tree, dico_param_tree)
 best_model_knn = best_param(X_train_st, Y_train, model_knn, dico_param_knn)
