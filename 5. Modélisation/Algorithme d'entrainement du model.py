@@ -108,7 +108,6 @@ mean_absolute_error_knn, mean_squared_error_knn, max_error_knn, explained_varian
 mean_absolute_error_svm, mean_squared_error_svm, max_error_svm, explained_variance_svm, mean_poisson_deviance_svm, predict_svm = fit(X_train_st, X_test_st, Y_train, best_model_svm)
 mean_absolute_error_rf, mean_squared_error_rf, max_error_rf, explained_variance_rf, mean_poisson_deviance_rf, predict_rf = fit(X_train_st, X_test_st, Y_train, best_model_rf)
 mean_absolute_error_lr, mean_squared_error_lr, max_error_lr, explained_variance_lr, mean_poisson_deviance_lr, predict_lr = fit(X_train_st, X_test_st, Y_train, best_model_lr)
-
 # On crée une fonction qui renvoie les meilleurs features 
 def best_features(model, X_train, seuil) :     
     features_importances = []
