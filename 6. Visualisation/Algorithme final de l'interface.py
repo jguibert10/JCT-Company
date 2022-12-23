@@ -345,7 +345,7 @@ class App(customtkinter.CTk):
 
         res_estimateur = predict 
         #res_estimateur = 144000 si ca ne fonctionne pas pour voir un résultat
-        prix_estime = res_estimateur
+        prix_estime = res_estimateur[0]
         
         # ======================== Affichage des résultats ============
         
