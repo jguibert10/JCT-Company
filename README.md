@@ -28,13 +28,13 @@ pip install customtkinter --upgrade
 
 # 0. Annexe  : Travail préliminaire 
 
-Avant de maîtriser les différents modèles, le travail de standardisation ou la technique du web scraping, nous avons travaillé sur une base gouvernementale que nous avons nettoyée puis utilisée dans un modèle classique linéaire avant de construire un premier interface mais qui comportait plusieurs problèmes. 
+Avant de maîtriser les différents modèles, le travail de standardisation ou la technique de web scraping, nous avons travaillé sur une base gouvernementale que nous avons nettoyées puis utilisées dans un modèle classique de régression linéaire avant de construire un premier interface, qui comportait plusieurs problèmes. 
 
 Nous avons tenu néanmoins à mettre ce code car nous estimons que ce travail a été loin d'être anodin dans la réalisation de notre projet final qui s'est construit au fil des mois. 
 
 # 1. Récupération des données ou Web Scraping 
 
-Nous avons tout d'abord décidé de récupérer des données à partir du site Immodata (https://www.immo-data.fr/) qui référencie des biens vendus en France en donnant certaines de leurs caractéristiques. Afin de collecter un nombre significatif de données, nous avons enfermé Paris dans un rectangle dont les sommets correspondent à des coordonnées puis diviser ce rectangle en 400 petits rectangles afin de cadriller la ville. 
+Nous avons tout d'abord décidé de récupérer des données à partir du site Immodata (https://www.immo-data.fr/) qui référence des biens vendus en France en donnant certaines de leurs caractéristiques. Afin de collecter un nombre significatif de données, nous avons enfermé Paris dans un rectangle dont les sommets correspondent à des coordonnées géographiques, puis divisé ce rectangle en 400 petits rectangles afin de cadriller la ville. 
 
 
 <img width="818" alt="Capture d’écran 2022-12-19 à 16 02 40" src="https://user-images.githubusercontent.com/103358913/208455469-70942fb1-f314-49aa-8793-723e46a044ce.png">
@@ -46,7 +46,7 @@ Nous avons ainsi réussi à obtenir envrion 40.000 données qu'il nous a ensuite
 
 La base issue du Web Scraping comportait plusieurs irrégularités qu'il nous a fallu corriger. 
 
-Tout d'abord, comme nous souhaitons nous concentrer uniquement sur les biens localisés à Paris, nous avons supprimé de la base tous les biens qui se situent en dehors. Puis nous avons dû créer de nouvelles colonnes pour distinguer les variables. Ensuite, nous avons effectué un test de vraisemblance afin de supprimer les données qui semblaient irrégulières au vu de leur prix de vente par rapport à la surface et aux tendances du marché parisien.
+Tout d'abord, comme nous souhaitions nous concentrer uniquement sur les biens localisés à Paris, nous avons supprimé de la base tous les biens qui se situaient en dehors. Puis nous avons dû créer de nouvelles colonnes pour distinguer les variables. Ensuite, nous avons effectué un test de vraisemblance afin de supprimer les données qui semblaient irrégulières au vu de leur prix de vente par rapport à la surface et aux tendances du marché parisien.
 
 Enfin, nous avons converti l'adresse des biens en coordonnées géographiques grâce à geopandas afin d'utiliser des valeurs numériques et non des chaînes de caractères dans la modélisation. Voici la base obtenue nettoyée. 
 
@@ -56,7 +56,7 @@ Enfin, nous avons converti l'adresse des biens en coordonnées géographiques gr
 
 Après récupération de la base de données, nous avons réalisé une série de statistiques descriptives afin de décrire de façon synthétique et parlante les données immobilières pour mieux les analyser.
 
-Dans un premier temps, nous avons ainsi modifié la base de données obtenues précédemment, en transformant les coordonnées géographiques de chaque bien en une adresse postale. Nous avons également rajouté certaines variables qui nous paraissaient judicieuses, telles que le prix du mètre carré pour chaque bien. De fait, nous avons alors réalisé une carte interactive de la ville de Paris, avec pour chaque arrondissement, le prix moyen (au mètre carré) auquel les biens immobiliers sont vendus. 
+Dans un premier temps, nous avons  modifié la base de données obtenues précédemment, en transformant les coordonnées géographiques de chaque bien en une adresse postale afin de récupérer les arrondissements. Nous avons également rajouté certaines variables qui nous paraissaient judicieuses, telle que le prix au mètre carré pour chaque bien. De fait, nous avons alors réalisé une carte interactive de la ville de Paris, avec pour chaque arrondissement, le prix moyen (au mètre carré) auquel les biens immobiliers sont vendus. 
 
 Nous avons aussi réalisé des études statistiques afin de vérifier la fiabilité et l’importance des données, ainsi que les corrélations entre chaque variables.
 
